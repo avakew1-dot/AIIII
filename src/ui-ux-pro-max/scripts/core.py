@@ -55,6 +55,11 @@ CSV_CONFIG = {
         "search_cols": ["Category", "Icon Name", "Keywords", "Best For"],
         "output_cols": ["Category", "Icon Name", "Keywords", "Library", "Import Code", "Usage", "Best For", "Style"]
     },
+    "motion": {
+        "file": "motion-principles.csv",
+        "search_cols": ["Category", "Principle", "Keywords", "Why It Matters", "Do", "Don't"],
+        "output_cols": ["Category", "Principle", "Keywords", "Why It Matters", "Do", "Don't", "Code Good", "Code Bad", "Severity", "Source"]
+    },
     "gsap": {
         "file": "motion.csv",
         "search_cols": ["Category", "Intensity Tier", "Keywords", "Trigger"],
@@ -220,6 +225,7 @@ def detect_domain(query):
         "typography": ["font pairing", "typography pairing", "heading font", "body font"],
         "google-fonts": ["google font", "font family", "font weight", "font style", "variable font", "noto", "font for", "find font", "font subset", "font language", "monospace font", "serif font", "sans serif font", "display font", "handwriting font", "font", "typography", "serif", "sans"],
         "icons": ["icon", "icons", "lucide", "heroicons", "symbol", "glyph", "pictogram", "svg icon"],
+        "motion": ["motion", "animation", "ease", "easing", "cubic-bezier", "spring", "transition", "keyframe", "transform", "translate", "scale on press", "transform-origin", "drag", "gesture", "swipe", "framer motion", "waapi", "prefers-reduced-motion", "duration", "raycast", "sonner", "vaul", "drawer", "tooltip delay", "popover origin", "clip-path", "blur transition", "hardware accelerated", "starting-style"],
         "gsap": ["gsap", "quickto", "scrolltrigger", "stagger", "magnetic cursor", "parallax", "page transition", "scroll reveal", "scroll-triggered", "scrollytelling", "flip plugin", "splittext", "shimmer", "skeleton loader"],
         "react": ["react", "next.js", "nextjs", "suspense", "memo", "usecallback", "useeffect", "rerender", "bundle", "waterfall", "barrel", "dynamic import", "rsc", "server component"],
         "web": ["aria", "focus", "outline", "semantic", "virtualize", "autocomplete", "form", "input type", "preconnect"]
