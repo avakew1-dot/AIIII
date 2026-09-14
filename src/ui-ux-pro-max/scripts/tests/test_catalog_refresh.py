@@ -214,6 +214,39 @@ class CatalogRefreshTest(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertEqual(["Alpha Sans", "Zeta Serif"], [item["name"] for item in licenses["families"]])
 
+    def test_official_metadata_unofficial_license_is_excluded_for_review_not_fatal(self):
+        # Google Sans Flex shipped in the live API on 2026-09-14 with `license: ""` in its official
+        # METADATA.pb; that used to fail the whole refresh. It must land in excludedFamilies instead.
+        with tempfile.TemporaryDirectory() as raw:
+            directory = Path(raw)
+            metadata_root = directory / "google-fonts"
+            for slug, family, license_name in (
+                ("alphasans", "Alpha Sans", "OFL"),
+                ("zetaserif", "Zeta Serif", ""),
+            ):
+                family_dir = metadata_root / "ofl" / slug
+                family_dir.mkdir(parents=True)
+                (family_dir / "METADATA.pb").write_text(
+                    f'name: "{family}"\n'
+                    f'designer: "{family} Designer"\n'
+                    f'license: "{license_name}"\n'
+                    'date_added: "2024-01-02"\n',
+                    encoding="utf-8",
+                )
+            args = self.font_args(directory)
+            metadata_index = args.index("--metadata-input")
+            args[metadata_index:metadata_index + 2] = ["--metadata-root", metadata_root]
+            result = self.run_command(*args)
+            licenses = json.loads((directory / "google-font-licenses.json").read_text())
+            report = json.loads(result.stdout)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(["Alpha Sans"], [item["name"] for item in licenses["families"]])
+        excluded = licenses["excludedFamilies"]
+        self.assertEqual(["Zeta Serif"], [item["name"] for item in excluded])
+        self.assertEqual("needs-review", excluded[0]["status"])
+        self.assertIn("license", excluded[0]["reason"])
+        self.assertEqual(["Zeta Serif"], [item["name"] for item in report["excludedFamilies"]])
+
     def test_catalog_rejects_bool_rank_duplicate_axis_and_unreviewed_addition(self):
         with tempfile.TemporaryDirectory() as raw:
             directory = Path(raw)

@@ -225,14 +225,23 @@ def metadata_from_repository(root, families):
         fail(f"{root}: no METADATA.pb family records found")
 
     requested = list(families)
-    covered = [records[family] for family in requested if family in records]
-    if len(covered) < max(1, math.ceil(len(requested) * 0.9)):
+    found = [family for family in requested if family in records]
+    if len(found) < max(1, math.ceil(len(requested) * 0.9)):
         fail(f"{root}: official metadata covers fewer than 90% of requested families")
+    specimen = lambda family: "https://fonts.google.com/specimen/" + urllib.parse.quote_plus(family)
+    # A family whose official METADATA.pb carries a license outside LICENSES (Google Sans Flex
+    # shipped with license "" on 2026-09-14) is routed to needs-review instead of failing the
+    # whole refresh; validate_metadata still rejects such a license if it reaches `families`.
+    covered = [records[family] for family in found if records[family]["license"] in LICENSES]
     excluded = [{
         "name": family,
         "reason": "No exact-family METADATA.pb entry in the official google/fonts snapshot",
-        "source": "https://fonts.google.com/specimen/" + urllib.parse.quote_plus(family),
-    } for family in requested if family not in records]
+        "source": specimen(family),
+    } for family in requested if family not in records] + [{
+        "name": family,
+        "reason": f"Official METADATA.pb license {records[family]['license']!r} is not an accepted Google Fonts license (OFL, APACHE2, UFL)",
+        "source": specimen(family),
+    } for family in found if records[family]["license"] not in LICENSES]
     return {"families": covered, "excludedFamilies": excluded}
 
 
