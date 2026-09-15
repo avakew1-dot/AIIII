@@ -139,7 +139,7 @@ Load `references/slides-create.md` for the creation workflow.
 
 ## Banner Design (Built-in)
 
-22 art direction styles across social, ads, web, print. This workflow is self-contained: it needs no sibling skills. Browser research, image generation, and screenshot capture are optional runtime capabilities; when unavailable, use supplied assets, CSS-built visuals, and the runtime's standard preview or capture workflow.
+22 art direction styles across social, ads, web, print. This workflow needs nothing outside the bundle: `references/banner-sizes-and-styles.md` and the bundled `ui-ux-pro-max` skill for style and palette guidance. Browser research, image generation, and screenshot capture are optional runtime capabilities; when unavailable, use supplied assets, CSS-built visuals, and the runtime's standard preview or capture workflow.
 
 Load `references/banner-sizes-and-styles.md` for complete sizes and styles reference.
 
@@ -234,7 +234,7 @@ Load `references/social-photos-design.md` for sizes, templates, best practices.
 2. **Analyze** — Parse prompt: subject, platforms, style, brand context, content elements
 3. **Ideate** — 3-5 concepts, present via `AskUserQuestion`
 4. **Design** — bundled `brand` → `design-system` → `ui-ux-pro-max` skills; HTML per idea × size
-5. **Export** — Chrome headless, Playwright, or Puppeteer screenshot at exact px (2x deviceScaleFactor)
+5. **Export** — Chrome headless, Playwright, or Puppeteer screenshot at exact px (2x device scale factor where the tool supports it; see the reference)
 6. **Verify** — Open the exported PNGs in an available browser or image viewer and inspect them; fix layout/styling issues and re-export
 7. **Report** — Summary to `plans/reports/` with design decisions
 8. **Organize** — Sort output files and reports into the project's asset directories

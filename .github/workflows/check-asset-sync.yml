@@ -101,15 +101,20 @@ jobs:
       # skill that way. Three greps over every shipped Markdown file in both trees:
       # 1. no claudekit command namespace - "/ck:" or "/ckm:" not preceded by a word character
       #    or "/", so a URL or file path containing the letters is not a hit;
-      # 2. every backticked name directly followed by "skill" or "skills" (the form these docs
+      # 2. every backticked name followed by "skill", "skills" or "sub-skill" (the form these docs
       #    use to name a skill) must be a directory under .claude/skills - an allowlist, so a new
-      #    unbundled name fails without editing this file; the bundled hits at the time of
-      #    writing are `design` and `slides`;
-      # 3. none of the claudekit-only skill names the shipped docs used to reference, in any
-      #    spelling - "Related Skills: frontend-design, ..." carries neither backticks nor a
-      #    "skill" suffix, so 2. cannot see it.
-      # Not covered: mentions inside scripts (brand/scripts/extract-colors.cjs names ai-multimodal
-      # three times as an optional "if installed" hint, which is not a workflow step), and a
+      #    unbundled name fails without editing this file. The lookahead walks a list ("`a`, `b`,
+      #    and `c` skills", separators ", ", " and ", " or ", "/", " -> ") so every member is
+      #    checked, not only the last one, and tolerates "**" around the name;
+      # 3. none of the claudekit-only skill names the shipped docs used to reference, matched
+      #    case-insensitively in their hyphenated spelling - "Related Skills: frontend-design, ..."
+      #    carries neither backticks nor a "skill" suffix, so 2. cannot see it. "project-management"
+      #    is also ordinary English: a hit in prose is a reword, not a workflow step.
+      # Not covered: a spaced or underscored spelling ("frontend design"); a bare name with no
+      # backticks and no "skill" suffix that is not on the list in 3.; mentions inside scripts
+      # (brand/scripts/extract-colors.cjs names ai-multimodal three times as a hint, one of them
+      # "if installed" - not a workflow step); cli/assets/templates, the CLI's rendered core skill,
+      # which neither this step nor the path contract scans (clean at the time of writing); and a
       # bundled-set change - a skill directory added or removed under .claude/skills moves the
       # allowlist with it, which is the intent.
       # grep exit codes as above: for 1. and 3. only 1 (no hits) passes; for 2. hits are fine as
@@ -125,12 +130,12 @@ jobs:
             echo "::error::claudekit command namespaces (/ck:, /ckm:) are not shipped by this plugin - name the bundled skill instead (see #474 finding 2); grep rc=$rc"
             status=1
           fi
-          rc=0; hits=$(LC_ALL=C grep -rnoIP --include='*.md' '`[a-z0-9-]+`(?= skills?\b)' .claude/skills cli/assets/skills) || rc=$?
+          rc=0; hits=$(LC_ALL=C grep -rnoIP --include='*.md' '`[a-z0-9-]+`(?:\*\*)?(?=(?:(?:, | and |, and | or |, or |/| → | -> )(?:\*\*)?`[a-z0-9-]+`(?:\*\*)?)* (?:sub-)?[Ss]kills?\b)' .claude/skills cli/assets/skills) || rc=$?
           if [ "$rc" -eq 2 ]; then echo "::error::grep failed while scanning for skill references (rc=2)"; status=1; fi
           unbundled=0
           while IFS= read -r hit; do
             [ -n "$hit" ] || continue
-            name=$(printf '%s\n' "$hit" | sed 's/.*`\([^`]*\)`$/\1/')
+            name=$(printf '%s\n' "$hit" | sed 's/.*`\([^`]*\)`.*/\1/')
             if ! printf '%s\n' "$bundled" | grep -qxF -- "$name"; then
               printf '%s\n' "$hit"
               unbundled=1
@@ -140,7 +145,7 @@ jobs:
             echo "::error::skill references outside the bundled set ($(printf '%s' "$bundled" | tr '\n' ' ')) fail under a plugin or CLI install - implement the step inline, name a bundled skill, or drop the step (see #474 finding 2)"
             status=1
           fi
-          rc=0; LC_ALL=C grep -rnIP --include='*.md' '\b(frontend-design|ai-artist|ai-multimodal|chrome-devtools|assets-organizing|project-management)\b' .claude/skills cli/assets/skills || rc=$?
+          rc=0; LC_ALL=C grep -rniIP --include='*.md' '\b(frontend-design|ai-artist|ai-multimodal|chrome-devtools|assets-organizing|project-management)\b' .claude/skills cli/assets/skills || rc=$?
           if [ "$rc" -ne 1 ]; then
             echo "::error::claudekit-only skill names are not shipped by this plugin - implement the step inline, name a bundled skill, or drop the step (see #474 finding 2); grep rc=$rc"
             status=1

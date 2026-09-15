@@ -24,7 +24,7 @@ Design social media images via HTML/CSS rendering + screenshot export. Orchestra
 
 ### Step 1: Plan the Work
 
-Create persistent TODO tasks with the runtime's native task list. Break down into:
+Create TODO tasks with the runtime's native task list. Break down into:
 - Requirement analysis task
 - Idea generation task(s)
 - HTML design task(s) — can parallelize per size/variant
@@ -227,7 +227,7 @@ Open each exported PNG in an available browser or image viewer and inspect it:
 
 ### Step 7: Generate Summary Report
 
-Save report to `plans/reports/` with naming pattern from session hooks.
+Save the report as `plans/reports/{YYMMDD}-social-photos-{topic}.md`.
 
 Report structure:
 
@@ -271,7 +271,7 @@ Report structure:
 
 Organize all output files and reports:
 - Move/copy exported PNGs to proper asset directories
-- Ensure reports are in `plans/reports/` with correct naming
+- Ensure reports are in `plans/reports/` under the name from Step 7
 - Clean up intermediate HTML files if requested
 - Tag outputs with metadata (platform, size, concept name)
 
