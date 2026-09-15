@@ -105,7 +105,9 @@ jobs:
       #    use to name a skill) must be a directory under .claude/skills - an allowlist, so a new
       #    unbundled name fails without editing this file. The lookahead walks a list ("`a`, `b`,
       #    and `c` skills", separators ", ", " and ", " or ", "/", " -> ") so every member is
-      #    checked, not only the last one, and tolerates "**" around the name;
+      #    checked, not only the last one, and tolerates "**" around the name. The file is read as
+      #    one record (-z, separators as \s+) so a list wrapped over several lines is still a
+      #    list; a hit therefore names the file and the name, not the line;
       # 3. none of the claudekit-only skill names the shipped docs used to reference, matched
       #    case-insensitively in their hyphenated spelling - "Related Skills: frontend-design, ..."
       #    carries neither backticks nor a "skill" suffix, so 2. cannot see it. "project-management"
@@ -130,7 +132,7 @@ jobs:
             echo "::error::claudekit command namespaces (/ck:, /ckm:) are not shipped by this plugin - name the bundled skill instead (see #474 finding 2); grep rc=$rc"
             status=1
           fi
-          rc=0; hits=$(LC_ALL=C grep -rnoIP --include='*.md' '`[a-z0-9-]+`(?:\*\*)?(?=(?:(?:, | and |, and | or |, or |/| → | -> )(?:\*\*)?`[a-z0-9-]+`(?:\*\*)?)* (?:sub-)?[Ss]kills?\b)' .claude/skills cli/assets/skills) || rc=$?
+          rc=0; hits=$(LC_ALL=C grep -rzoIP --include='*.md' '`[a-z0-9-]+`(?:\*\*)?(?=(?:(?:,\s+|\s+and\s+|,\s+and\s+|\s+or\s+|,\s+or\s+|/|\s+→\s+|\s+->\s+)(?:\*\*)?`[a-z0-9-]+`(?:\*\*)?)*\s+(?:sub-)?[Ss]kills?\b)' .claude/skills cli/assets/skills | tr '\0' '\n'; exit "${PIPESTATUS[0]}") || rc=$?
           if [ "$rc" -eq 2 ]; then echo "::error::grep failed while scanning for skill references (rc=2)"; status=1; fi
           unbundled=0
           while IFS= read -r hit; do
