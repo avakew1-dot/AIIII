@@ -1,0 +1,39 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message-1": {
+          "type": "message",
+          "settings": {
+            "text": "Free UK shipping on every subscription box",
+            "link": ""
+          }
+        },
+        "message-2": {
+          "type": "message",
+          "settings": {
+            "text": "10% of every box goes to that month's charity",
+            "link": "/pages/impact"
+          }
+        }
+      },
+      "block_order": ["message-1", "message-2"],
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_subscribe_button": true,
+        "subscribe_label": "Subscribe",
+        "subscribe_url": "/pages/subscription"
+      }
+    }
+  },
+  "order": ["announcement-bar", "header"]
+}

@@ -1,0 +1,310 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Dear Wild",
+    "theme_version": "1.0.0",
+    "theme_author": "Dear Wild",
+    "theme_documentation_url": "https://dearwild.example.com",
+    "theme_support_url": "https://dearwild.example.com/pages/contact"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Colour palette"
+      },
+      {
+        "type": "paragraph",
+        "content": "Dear Wild's palette lives here in colour schemes. Every section can be assigned one of these schemes from the theme editor, so the whole site can be recoloured without touching code."
+      },
+      {
+        "type": "color_scheme_group",
+        "id": "color_schemes",
+        "definition": [
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Background",
+            "default": "#F3E4C8"
+          },
+          {
+            "type": "color",
+            "id": "background_alt",
+            "label": "Background (paper texture tint)",
+            "default": "#EDE0C0"
+          },
+          {
+            "type": "color",
+            "id": "text",
+            "label": "Text",
+            "default": "#3A2E22"
+          },
+          {
+            "type": "color",
+            "id": "text_muted",
+            "label": "Muted text",
+            "default": "#6B5A47"
+          },
+          {
+            "type": "color",
+            "id": "accent",
+            "label": "Accent / button background",
+            "default": "#C96F52"
+          },
+          {
+            "type": "color",
+            "id": "accent_text",
+            "label": "Accent / button text",
+            "default": "#F3E4C8"
+          },
+          {
+            "type": "color",
+            "id": "border",
+            "label": "Border & frame lines",
+            "default": "#3A2E22"
+          }
+        ],
+        "role": {
+          "background": "background",
+          "text": "text",
+          "primary_button": "accent",
+          "primary_button_text": "accent_text"
+        },
+        "default": [
+          {
+            "id": "scheme-1",
+            "label": "Cream (vintage paper)",
+            "settings": {
+              "background": "#F3E4C8",
+              "background_alt": "#EDE0C0",
+              "text": "#3A2E22",
+              "text_muted": "#6B5A47",
+              "accent": "#C96F52",
+              "accent_text": "#F3E4C8",
+              "border": "#3A2E22"
+            }
+          },
+          {
+            "id": "scheme-2",
+            "label": "Terracotta (bold)",
+            "settings": {
+              "background": "#C96F52",
+              "background_alt": "#BD6247",
+              "text": "#F3E4C8",
+              "text_muted": "#EAD9BE",
+              "accent": "#F3E4C8",
+              "accent_text": "#3A2E22",
+              "border": "#F3E4C8"
+            }
+          },
+          {
+            "id": "scheme-3",
+            "label": "Rose",
+            "settings": {
+              "background": "#D3A9AE",
+              "background_alt": "#C99CA2",
+              "text": "#3A2E22",
+              "text_muted": "#544236",
+              "accent": "#3A2E22",
+              "accent_text": "#F3E4C8",
+              "border": "#3A2E22"
+            }
+          },
+          {
+            "id": "scheme-4",
+            "label": "Sage",
+            "settings": {
+              "background": "#93AC93",
+              "background_alt": "#87A087",
+              "text": "#3A2E22",
+              "text_muted": "#4A4030",
+              "accent": "#3A2E22",
+              "accent_text": "#F3E4C8",
+              "border": "#3A2E22"
+            }
+          },
+          {
+            "id": "scheme-5",
+            "label": "Denim",
+            "settings": {
+              "background": "#5D80AA",
+              "background_alt": "#54749C",
+              "text": "#F3E4C8",
+              "text_muted": "#DCE6EF",
+              "accent": "#F3E4C8",
+              "accent_text": "#3A2E22",
+              "border": "#F3E4C8"
+            }
+          },
+          {
+            "id": "scheme-6",
+            "label": "Ink (dark)",
+            "settings": {
+              "background": "#3A2E22",
+              "background_alt": "#332619",
+              "text": "#F3E4C8",
+              "text_muted": "#C9B79A",
+              "accent": "#C96F52",
+              "accent_text": "#F3E4C8",
+              "border": "#F3E4C8"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Display / headline font"
+      },
+      {
+        "type": "paragraph",
+        "content": "Used for all headlines and titles. Choose a serif with character — the theme defaults to a folk-print display serif."
+      },
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "fraunces_n4"
+      },
+      {
+        "type": "header",
+        "content": "Script / signature accent font"
+      },
+      {
+        "type": "paragraph",
+        "content": "A cursive accent used sparingly — the hand-signed wordmark, small flourish labels, pull quotes."
+      },
+      {
+        "type": "font_picker",
+        "id": "font_script",
+        "label": "Script font",
+        "default": "caveat_n4"
+      },
+      {
+        "type": "header",
+        "content": "Body font"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "jost_n4"
+      }
+    ]
+  },
+  {
+    "name": "Logo & favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Logo width",
+        "min": 80,
+        "max": 260,
+        "step": 4,
+        "unit": "px",
+        "default": 140
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Vintage frame motif",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Controls the ornate scrollwork border used around the logo and key headlines site-wide."
+      },
+      {
+        "type": "select",
+        "id": "frame_style",
+        "label": "Frame style",
+        "default": "scrollwork",
+        "options": [
+          { "value": "scrollwork", "label": "Scrollwork (ornate)" },
+          { "value": "simple", "label": "Simple double rule" },
+          { "value": "stamp", "label": "Postage stamp (perforated)" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Buttons",
+    "settings": [
+      {
+        "type": "range",
+        "id": "button_radius",
+        "label": "Corner radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 2
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Page width",
+        "min": 1000,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "default": 1280
+      },
+      {
+        "type": "range",
+        "id": "spacing_sections",
+        "label": "Space between sections",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "default": 0
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok URL" },
+      { "type": "text", "id": "social_pinterest", "label": "Pinterest URL" },
+      { "type": "text", "id": "social_facebook", "label": "Facebook URL" }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "default": "drawer",
+        "options": [
+          { "value": "drawer", "label": "Drawer" },
+          { "value": "page", "label": "Page" }
+        ]
+      }
+    ]
+  }
+]

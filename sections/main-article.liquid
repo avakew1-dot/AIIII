@@ -1,0 +1,24 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding grain-texture">
+  <div class="page-width">
+    <article class="prose" style="max-width:68ch; margin-inline:auto;">
+      <p class="text-center" style="color: rgb(var(--color-text-muted)); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.06em;">{{ article.published_at | date: '%B %-d, %Y' }}</p>
+      <h1 class="text-center">{{ article.title }}</h1>
+      {%- if article.image -%}
+        <div class="stamp-frame" style="display:block; margin: 2rem auto;">
+          {{ article.image | image_url: width: 900 | image_tag: alt: article.title, style: 'width:100%;' }}
+          {% render 'stamp-frame' %}
+        </div>
+      {%- endif -%}
+      {{ article.content }}
+    </article>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

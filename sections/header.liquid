@@ -1,0 +1,91 @@
+<header class="site-header color-section color-{{ section.settings.color_scheme }}">
+  <div class="page-width site-header__inner">
+    <a href="{{ routes.root_url }}" class="site-header__logo-frame vintage-frame vintage-frame--{{ settings.frame_style }}" aria-label="{{ shop.name }} home">
+      {%- unless settings.frame_style == 'simple' -%}{% render 'vintage-frame' %}{%- endunless -%}
+      {%- if settings.logo -%}
+        {{ settings.logo | image_url: width: 400 | image_tag: loading: 'eager', widths: '100,140,200,280,400', alt: shop.name }}
+      {%- else -%}
+        <span class="site-header__logo-text script-accent">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      {%- for link in section.settings.main_menu.links -%}
+        <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="site-header__actions">
+      {%- if section.settings.show_subscribe_button -%}
+        <a href="{{ section.settings.subscribe_url }}" class="btn btn--primary btn--sm hide-mobile">{{ section.settings.subscribe_label }}</a>
+      {%- endif -%}
+
+      <a href="{{ routes.search_url }}" class="site-header__icon-btn" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M13.5 13.5L18 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </a>
+
+      <a href="{{ routes.cart_url }}" class="site-header__icon-btn" aria-label="Cart" {% if settings.cart_type == 'drawer' %}data-cart-open="drawer"{% endif %}>
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h13l-1.2 9.5a2 2 0 0 1-2 1.75H7.2a2 2 0 0 1-2-1.75L4 7Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M7.5 7V5.5a3 3 0 0 1 6 0V7" stroke="currentColor" stroke-width="1.4"/></svg>
+        <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+
+      <button type="button" class="header-mobile-toggle" data-mobile-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav color-section color-{{ section.settings.color_scheme }}" id="mobile-nav" data-mobile-nav>
+  <div class="mobile-nav__header">
+    <button type="button" class="mobile-nav__close" data-mobile-nav-close aria-label="Close menu">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l14 14M20 6L6 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <ul class="mobile-nav__list">
+    {%- for link in section.settings.main_menu.links -%}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {%- endfor -%}
+    {%- if section.settings.show_subscribe_button -%}
+      <li style="margin-top:1rem;"><a href="{{ section.settings.subscribe_url }}" class="btn btn--primary">{{ section.settings.subscribe_label }}</a></li>
+    {%- endif -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subscribe_button",
+      "label": "Show subscribe button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subscribe_label",
+      "label": "Subscribe button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "url",
+      "id": "subscribe_url",
+      "label": "Subscribe button link"
+    }
+  ]
+}
+{% endschema %}

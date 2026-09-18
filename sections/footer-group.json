@@ -1,0 +1,33 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "col-1": {
+          "type": "link_list",
+          "settings": { "heading": "Explore", "menu": "main-menu" }
+        },
+        "col-2": {
+          "type": "link_list",
+          "settings": { "heading": "Support", "menu": "footer" }
+        },
+        "col-3": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Stay in the loop",
+            "text": "New covers, new causes, first look."
+          }
+        }
+      },
+      "block_order": ["col-1", "col-2", "col-3"],
+      "settings": {
+        "color_scheme": "scheme-6",
+        "blurb": "A little something in the post, once a month — a blank journal, a sticker sheet, and a story worth telling.",
+        "bottom_note": "Made slowly, mailed monthly."
+      }
+    }
+  },
+  "order": ["footer"]
+}

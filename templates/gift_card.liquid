@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ shop.name }} gift card</title>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <style>
+    body { background: #F3E4C8; color: #3A2E22; font-family: sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
+    .gift-card { text-align:center; padding: 3rem; border: 2px solid #3A2E22; max-width: 30rem; }
+    .gift-card__amount { font-size: 2.5rem; font-weight:700; margin: 1rem 0; }
+    .gift-card__code { font-size: 1.4rem; letter-spacing: 0.1em; border: 1.5px dashed #3A2E22; padding: 0.75em 1em; display:inline-block; margin: 1rem 0; }
+    @media print { .no-print { display:none; } }
+  </style>
+</head>
+<body class="template-gift_card">
+  <div class="gift-card">
+    <p class="script-accent" style="font-family: cursive; font-size:1.5rem;">{{ shop.name }}</p>
+    <h1>Gift Card</h1>
+    <p class="gift-card__amount">{{ gift_card.initial_value | money }}</p>
+    <p class="gift-card__code">{{ gift_card.code | format_code }}</p>
+    {%- if gift_card.enabled == false or gift_card.expired -%}
+      <p>This gift card is no longer active.</p>
+    {%- else -%}
+      <p>Use this code at checkout.</p>
+    {%- endif -%}
+    <img src="{{ gift_card.qr_identifier | qr_code: format: 'svg' }}" alt="QR code" width="140" height="140">
+    <p class="no-print"><button onclick="window.print()">Print this gift card</button></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight">
+  <div class="page-width">
+    <form action="{{ routes.search_url }}" method="get" role="search" style="max-width:34rem; margin: 0 auto 2.5rem;">
+      <div class="field" style="display:flex; gap:0.6rem;">
+        <label class="visually-hidden" for="Search">Search</label>
+        <input type="search" id="Search" name="q" value="{{ search.terms | escape }}" placeholder="Search prints, stickers, journals&hellip;">
+        <button type="submit" class="btn btn--primary">Search</button>
+      </div>
+    </form>
+
+    {%- if search.performed -%}
+      <p class="text-center" style="color: rgb(var(--color-text-muted)); margin-bottom:2rem;">{{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for "{{ search.terms }}"</p>
+      {%- if search.results.size > 0 -%}
+        <div class="grid grid--4">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'card-product', card_product: item %}
+            {%- else -%}
+              <a href="{{ item.url }}" class="postcard-card">
+                <p class="postcard-card__title">{{ item.title }}</p>
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="text-center">No results &mdash; try another search.</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search results",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

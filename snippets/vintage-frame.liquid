@@ -1,0 +1,10 @@
+{%- comment -%}
+  Ornate frame wrapper. Renders 4 mirrored corner flourishes over the
+  element's border. Usage:
+    {% render 'vintage-frame' %}  -- place inside a `position:relative`
+    element that already has class "vintage-frame".
+{%- endcomment -%}
+<span class="vintage-frame__corner vintage-frame__corner--tl" aria-hidden="true">{% render 'icon-flourish' %}</span>
+<span class="vintage-frame__corner vintage-frame__corner--tr" aria-hidden="true">{% render 'icon-flourish' %}</span>
+<span class="vintage-frame__corner vintage-frame__corner--bl" aria-hidden="true">{% render 'icon-flourish' %}</span>
+<span class="vintage-frame__corner vintage-frame__corner--br" aria-hidden="true">{% render 'icon-flourish' %}</span>

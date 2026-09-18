@@ -1,0 +1,33 @@
+{%- comment -%}
+  Postcard-styled product card.
+  Accepts: card_product (product object)
+{%- endcomment -%}
+{%- liquid
+  assign featured_image = card_product.featured_media.preview_image | default: card_product.featured_image
+-%}
+<a href="{{ card_product.url }}" class="postcard-card">
+  <div class="postcard-card__media deckle-edge">
+    {%- if featured_image -%}
+      {{ featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '350,500,700', alt: featured_image.alt | default: card_product.title }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag }}
+    {%- endif -%}
+    {%- if card_product.available == false -%}
+      <span class="postcard-card__badge">Sold out</span>
+    {%- elsif card_product.selling_plan_groups.size > 0 -%}
+      <span class="postcard-card__badge">Subscription</span>
+    {%- endif -%}
+  </div>
+  <p class="postcard-card__title">{{ card_product.title }}</p>
+  <div class="postcard-card__meta">
+    <span>{{ card_product.type }}</span>
+    <span class="postcard-card__price">
+      {%- if card_product.compare_at_price > card_product.price -%}
+        <s style="opacity:.6; font-weight:400;">{{ card_product.compare_at_price | money }}</s>
+        {{ card_product.price | money }}
+      {%- else -%}
+        {{ card_product.price | money }}
+      {%- endif -%}
+    </span>
+  </div>
+</a>

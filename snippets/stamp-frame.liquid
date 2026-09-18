@@ -1,0 +1,15 @@
+{%- comment -%}
+  Wraps a slotted image (rendered by the caller just before/after this
+  snippet inside the same .stamp-frame element) with a perforated
+  postage-stamp edge and small postmark corner mark.
+  This snippet only renders the postmark corner + perforation overlay;
+  the parent element supplies class="stamp-frame".
+{%- endcomment -%}
+<span class="stamp-frame__postmark" aria-hidden="true">
+  <svg viewBox="0 0 64 64" width="52" height="52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <circle cx="32" cy="32" r="19" stroke="currentColor" stroke-width="1"/>
+    <text x="32" y="29" text-anchor="middle" font-size="6.5" fill="currentColor" font-family="serif" letter-spacing="1">DEAR</text>
+    <text x="32" y="38" text-anchor="middle" font-size="6.5" fill="currentColor" font-family="serif" letter-spacing="1">WILD</text>
+  </svg>
+</span>

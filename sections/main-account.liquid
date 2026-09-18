@@ -1,0 +1,53 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight">
+  <div class="page-width">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; flex-wrap:wrap; gap:1rem;">
+      <h1 style="margin:0;">Hi {{ customer.first_name }}</h1>
+      <a href="{{ routes.account_logout_url }}" class="btn btn--outline btn--sm">Log out</a>
+    </div>
+
+    <h2>Order history</h2>
+    {%- if customer.orders.size == 0 -%}
+      <p style="color: rgb(var(--color-text-muted));">No orders yet &mdash; your first box is waiting.</p>
+    {%- else -%}
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:1.5px solid rgb(var(--color-border)); text-align:left;">
+              <th style="padding:0.75em 0.5em;">Order</th>
+              <th style="padding:0.75em 0.5em;">Date</th>
+              <th style="padding:0.75em 0.5em;">Payment</th>
+              <th style="padding:0.75em 0.5em;">Fulfillment</th>
+              <th style="padding:0.75em 0.5em;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for order in customer.orders -%}
+              <tr style="border-bottom:1px solid rgba(var(--color-border), 0.25);">
+                <td style="padding:0.75em 0.5em;"><a href="{{ order.customer_url }}" style="text-decoration:underline;">{{ order.name }}</a></td>
+                <td style="padding:0.75em 0.5em;">{{ order.created_at | date: '%d %b %Y' }}</td>
+                <td style="padding:0.75em 0.5em;">{{ order.financial_status_label }}</td>
+                <td style="padding:0.75em 0.5em;">{{ order.fulfillment_status_label }}</td>
+                <td style="padding:0.75em 0.5em;">{{ order.total_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    {%- endif -%}
+
+    <h2 style="margin-top:2.5rem;">Manage your subscription</h2>
+    <p style="color: rgb(var(--color-text-muted));">Pause, skip or update your journal subscription any time from the Subscriptions app confirmation email, or contact us and we'll sort it.</p>
+
+    <h2 style="margin-top:2.5rem;">Addresses</h2>
+    <p><a href="{{ routes.account_addresses_url }}" style="text-decoration:underline;">Manage addresses</a></p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Customer account",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

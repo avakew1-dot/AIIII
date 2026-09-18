@@ -1,0 +1,56 @@
+{
+  "sections": {
+    "tracker": {
+      "type": "impact-tracker",
+      "settings": {
+        "hero_color_scheme": "scheme-1",
+        "eyebrow": "Where the giving goes",
+        "heading": "Raised so far, together",
+        "subheading": "Every subscription and print sold puts money directly toward that month's charity partner. Here's the running tally.",
+        "total_override": 0,
+        "list_color_scheme": "scheme-4",
+        "list_heading": "Month by month"
+      },
+      "blocks": {
+        "month-1": {
+          "type": "month",
+          "settings": {
+            "month_label": "March 2026",
+            "animal_name": "The Red Fox",
+            "charity_name": "The Wildlife Trusts",
+            "charity_url": "https://www.wildlifetrusts.org",
+            "blurb": "<p>Chosen for their work restoring hedgerow habitats across the UK — exactly the kind of quiet, patient work this fox would approve of.</p>",
+            "amount_raised": 340,
+            "amount_goal": 500
+          }
+        },
+        "month-2": {
+          "type": "month",
+          "settings": {
+            "month_label": "February 2026",
+            "animal_name": "The Otter",
+            "charity_name": "UK Wild Otter Trust",
+            "charity_url": "https://www.ukwildottertrust.org",
+            "blurb": "<p>Otters are a sign of a healthy river — this charity rescues and rehabilitates them across the UK.</p>",
+            "amount_raised": 512,
+            "amount_goal": 500
+          }
+        },
+        "month-3": {
+          "type": "month",
+          "settings": {
+            "month_label": "January 2026",
+            "animal_name": "The Brown Hare",
+            "charity_name": "Hare Preservation Trust",
+            "charity_url": "https://hpt.org.uk",
+            "blurb": "<p>Brown hares have declined by 80% in the UK since the 1960s. This trust works on habitat and legal protection.</p>",
+            "amount_raised": 470,
+            "amount_goal": 500
+          }
+        }
+      },
+      "block_order": ["month-1", "month-2", "month-3"]
+    }
+  },
+  "order": ["tracker"]
+}

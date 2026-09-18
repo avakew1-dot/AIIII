@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_shipping_note": true,
+        "shipping_note": "Printed, packed and posted from the UK. Journals ship the first week of each month."
+      }
+    }
+  },
+  "order": ["main"]
+}

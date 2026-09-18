@@ -1,0 +1,43 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\""
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "This page wandered off"
+    },
+    "search": {
+      "no_results": "No results found for \"{{ terms }}\""
+    }
+  },
+  "products": {
+    "product": {
+      "sold_out": "Sold out",
+      "add_to_cart": "Add to bag",
+      "subscribe": "Subscribe now"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your bag",
+      "empty": "Your bag is empty",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout"
+    }
+  },
+  "customer": {
+    "login_page": {
+      "title": "Sign in",
+      "email": "Email",
+      "password": "Password",
+      "sign_in": "Sign in",
+      "forgot_password": "Forgot your password?"
+    },
+    "account": {
+      "title": "My account",
+      "order_history": "Order history",
+      "logout": "Log out"
+    }
+  }
+}

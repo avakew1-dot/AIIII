@@ -1,0 +1,55 @@
+{
+  "sections": {
+    "plan": {
+      "type": "subscription-plan",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "The Dear Wild box",
+        "heading": "One journal, one story, every month.",
+        "price_line": "£23/month — cancel anytime",
+        "subheading": "A blank journal wrapped in original animal cover art, a matching sticker sheet, and a donation to that month's charity — delivered to your door.",
+        "fallback_label": "Shop all products",
+        "fallback_url": "/collections/all"
+      },
+      "blocks": {
+        "feature-1": { "type": "feature", "settings": { "heading": "One 64-page blank journal", "text": "Thick, unlined paper wrapped in that month's original animal artwork." } },
+        "feature-2": { "type": "feature", "settings": { "heading": "A matching sticker sheet", "text": "Hand-illustrated stickers of the same animal and its habitat." } },
+        "feature-3": { "type": "feature", "settings": { "heading": "A charity donation", "text": "10% of your subscription goes to that month's featured charity." } },
+        "feature-4": { "type": "feature", "settings": { "heading": "A short story card", "text": "A little context on the animal, the artwork, and why it matters." } }
+      },
+      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4"]
+    },
+    "gallery": {
+      "type": "image-gallery",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "title": "The Fox", "subtitle": "March 2026" } },
+        "item-2": { "type": "item", "settings": { "title": "The Otter", "subtitle": "February 2026" } },
+        "item-3": { "type": "item", "settings": { "title": "The Hare", "subtitle": "January 2026" } },
+        "item-4": { "type": "item", "settings": { "title": "The Barn Owl", "subtitle": "December 2025" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4"],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "eyebrow": "The archive",
+        "heading": "Past months' cover art",
+        "text": "A peek at what's already arrived in mailboxes.",
+        "alignment": "center",
+        "columns": "4"
+      }
+    },
+    "faq": {
+      "type": "rich-text",
+      "blocks": {
+        "heading-1": { "type": "heading", "settings": { "text": "Good to know" } },
+        "text-1": { "type": "text", "settings": { "text": "<p><strong>When does it ship?</strong> The first week of every month. <strong>Can I skip a month?</strong> Yes, any time from your account. <strong>Can I gift it?</strong> Yes — choose a gift subscription at checkout or contact us for a printable card.</p>" } }
+      },
+      "block_order": ["heading-1", "text-1"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "paper_texture": true,
+        "alignment": "left"
+      }
+    }
+  },
+  "order": ["plan", "gallery", "faq"]
+}

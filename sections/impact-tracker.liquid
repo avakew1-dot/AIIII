@@ -1,0 +1,128 @@
+{%- liquid
+  assign total_raised = 0
+  for block in section.blocks
+    if block.type == 'month'
+      assign total_raised = total_raised | plus: block.settings.amount_raised
+    endif
+  endfor
+  if section.settings.total_override > 0
+    assign total_raised = section.settings.total_override
+  endif
+-%}
+
+<div class="color-section color-{{ section.settings.hero_color_scheme }} section-padding text-center">
+  <div class="page-width">
+    <span class="eyebrow" style="justify-content:center; width:100%;">{% render 'icon-doodle-star' %} {{ section.settings.eyebrow }}</span>
+    <h1>{{ section.settings.heading }}</h1>
+    <p class="impact-hero-figure">£{{ total_raised | round: 0 }}</p>
+    <p class="lede" style="margin-inline:auto;">{{ section.settings.subheading }}</p>
+  </div>
+</div>
+
+<div class="color-section color-{{ section.settings.list_color_scheme }} section-padding--tight">
+  <div class="page-width" style="max-width: 820px;">
+    <h2 class="text-center" style="margin-bottom:1.5rem;">{{ section.settings.list_heading }}</h2>
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'month' -%}
+        <div class="impact-month-row" {{ block.shopify_attributes }}>
+          <div class="impact-month-row__thumb">
+            {%- if block.settings.thumb_image -%}
+              {{ block.settings.thumb_image | image_url: width: 200 | image_tag: widths: '100,150,200', alt: block.settings.animal_name }}
+            {%- elsif block.settings.spotlight_image -%}
+              {{ block.settings.spotlight_image | image_url: width: 200 | image_tag: widths: '100,150,200', alt: block.settings.animal_name }}
+            {%- endif -%}
+          </div>
+          <div>
+            <p style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; color: rgb(var(--color-text-muted)); margin-bottom:0.2em;">{{ block.settings.month_label }} &middot; {{ block.settings.animal_name }}</p>
+            {% render 'progress-bar', raised: block.settings.amount_raised, goal: block.settings.amount_goal, label: block.settings.charity_name %}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- assign spotlight_index = 0 -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'month' -%}
+    {%- assign spotlight_index = spotlight_index | plus: 1 -%}
+    <div class="impact-spotlight" {{ block.shopify_attributes }}>
+      <div class="impact-spotlight__bg">
+        {%- if block.settings.spotlight_image -%}
+          {{ block.settings.spotlight_image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '750,1100,1500,1800', sizes: '100vw', alt: block.settings.animal_name }}
+        {%- elsif block.settings.thumb_image -%}
+          {{ block.settings.thumb_image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '750,1100,1500,1800', sizes: '100vw', alt: block.settings.animal_name }}
+        {%- endif -%}
+      </div>
+      <div class="page-width">
+        <div class="impact-spotlight__content">
+          <span class="eyebrow" style="color:#F3E4C8;">{{ block.settings.month_label }}</span>
+          <h2 style="color:#F3E4C8;">{{ block.settings.animal_name }}</h2>
+          {%- if block.settings.charity_name != blank -%}
+            <p class="script-accent" style="color:#F3E4C8;">supporting {{ block.settings.charity_name }}</p>
+          {%- endif -%}
+          {%- if block.settings.blurb != blank -%}
+            <div style="color:#EAD9BE; max-width:42ch;">{{ block.settings.blurb }}</div>
+          {%- endif -%}
+          {%- if block.settings.charity_url != blank -%}
+            <a href="{{ block.settings.charity_url }}" class="btn btn--outline" style="margin-top:1rem;" target="_blank" rel="noopener">Visit {{ block.settings.charity_name | default: 'the charity' }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Impact tracker",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "hero_color_scheme",
+      "label": "Hero colour scheme",
+      "default": "scheme-1"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Hero eyebrow", "default": "Where the giving goes" },
+    { "type": "text", "id": "heading", "label": "Hero heading", "default": "Raised so far, together" },
+    { "type": "textarea", "id": "subheading", "label": "Hero subheading", "default": "Every subscription and print sold puts money directly toward that month's charity partner. Here's the running tally." },
+    {
+      "type": "number",
+      "id": "total_override",
+      "label": "Manual total override",
+      "info": "Leave at 0 to auto-total the amounts raised below. Set a value to override."
+    },
+    {
+      "type": "color_scheme",
+      "id": "list_color_scheme",
+      "label": "Month list colour scheme",
+      "default": "scheme-1"
+    },
+    { "type": "text", "id": "list_heading", "label": "List heading", "default": "Month by month" }
+  ],
+  "blocks": [
+    {
+      "type": "month",
+      "name": "Month",
+      "settings": [
+        { "type": "text", "id": "month_label", "label": "Month", "default": "January 2026" },
+        { "type": "text", "id": "animal_name", "label": "Animal name", "default": "The Red Fox" },
+        { "type": "image_picker", "id": "thumb_image", "label": "Thumbnail image (round crop)" },
+        { "type": "image_picker", "id": "spotlight_image", "label": "Spotlight image (full-bleed)" },
+        { "type": "text", "id": "charity_name", "label": "Charity name", "default": "The Wildlife Trusts" },
+        { "type": "url", "id": "charity_url", "label": "Charity link" },
+        { "type": "richtext", "id": "blurb", "label": "Why we chose them", "default": "<p>Chosen for their work restoring hedgerow habitats across the UK — exactly the kind of quiet, patient work this fox would approve of.</p>" },
+        { "type": "number", "id": "amount_raised", "label": "Amount raised (£)", "default": 0 },
+        { "type": "number", "id": "amount_goal", "label": "Amount goal (£)", "default": 500 }
+      ]
+    }
+  ],
+  "max_blocks": 36,
+  "presets": [
+    {
+      "name": "Impact tracker",
+      "blocks": [{ "type": "month" }, { "type": "month" }, { "type": "month" }]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,89 @@
+{
+  "current": {
+    "font_heading": "fraunces_n4",
+    "font_script": "caveat_n4",
+    "font_body": "jost_n4",
+    "logo_width": 140,
+    "frame_style": "scrollwork",
+    "button_radius": 2,
+    "page_width": 1280,
+    "spacing_sections": 0,
+    "cart_type": "drawer",
+    "color_schemes": {
+      "scheme-1": {
+        "settings": {
+          "background": "#F3E4C8",
+          "background_alt": "#EDE0C0",
+          "text": "#3A2E22",
+          "text_muted": "#6B5A47",
+          "accent": "#C96F52",
+          "accent_text": "#F3E4C8",
+          "border": "#3A2E22"
+        }
+      },
+      "scheme-2": {
+        "settings": {
+          "background": "#C96F52",
+          "background_alt": "#BD6247",
+          "text": "#F3E4C8",
+          "text_muted": "#EAD9BE",
+          "accent": "#F3E4C8",
+          "accent_text": "#3A2E22",
+          "border": "#F3E4C8"
+        }
+      },
+      "scheme-3": {
+        "settings": {
+          "background": "#D3A9AE",
+          "background_alt": "#C99CA2",
+          "text": "#3A2E22",
+          "text_muted": "#544236",
+          "accent": "#3A2E22",
+          "accent_text": "#F3E4C8",
+          "border": "#3A2E22"
+        }
+      },
+      "scheme-4": {
+        "settings": {
+          "background": "#93AC93",
+          "background_alt": "#87A087",
+          "text": "#3A2E22",
+          "text_muted": "#4A4030",
+          "accent": "#3A2E22",
+          "accent_text": "#F3E4C8",
+          "border": "#3A2E22"
+        }
+      },
+      "scheme-5": {
+        "settings": {
+          "background": "#5D80AA",
+          "background_alt": "#54749C",
+          "text": "#F3E4C8",
+          "text_muted": "#DCE6EF",
+          "accent": "#F3E4C8",
+          "accent_text": "#3A2E22",
+          "border": "#F3E4C8"
+        }
+      },
+      "scheme-6": {
+        "settings": {
+          "background": "#3A2E22",
+          "background_alt": "#332619",
+          "text": "#F3E4C8",
+          "text_muted": "#C9B79A",
+          "accent": "#C96F52",
+          "accent_text": "#F3E4C8",
+          "border": "#F3E4C8"
+        }
+      }
+    },
+    "sections": {
+      "main-password-header": {
+        "type": "main-password-header",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  },
+  "presets": {}
+}

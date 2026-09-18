@@ -1,0 +1,82 @@
+{%- comment -%}
+  Renders a product form: variant picker, native Shopify selling plan
+  (subscription) selector, quantity, add-to-cart.
+  Accepts: buy_box_product (product object), show_selling_plans (bool)
+{%- endcomment -%}
+{%- liquid
+  assign current_variant = buy_box_product.selected_or_first_available_variant
+-%}
+<product-form data-product-form-wrapper data-product-id="{{ buy_box_product.id }}">
+  <script type="application/json" data-product-variants>{{ buy_box_product.variants | json }}</script>
+  {%- form 'product', buy_box_product, data-product-form: true, id: 'product-form-' | append: buy_box_product.id -%}
+    <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+
+    {%- if buy_box_product.has_only_default_variant == false -%}
+      {%- for option in buy_box_product.options_with_values -%}
+        <div class="field">
+          <label for="option-{{ forloop.index }}-{{ buy_box_product.id }}">{{ option.name }}</label>
+          <select id="option-{{ forloop.index }}-{{ buy_box_product.id }}" data-option-select data-option-position="{{ option.position }}">
+            {%- for value in option.values -%}
+              <option value="{{ value | escape }}" {% if value == option.selected_value %}selected{% endif %}>{{ value }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- assign selling_plan_groups = buy_box_product.selling_plan_groups -%}
+    {%- if show_selling_plans != false and selling_plan_groups.size > 0 -%}
+      <div class="selling-plan-options" role="radiogroup" aria-label="Purchase options">
+        {%- unless buy_box_product.requires_selling_plan -%}
+          <label class="selling-plan-option">
+            <input type="radio" name="selling_plan_radio_{{ buy_box_product.id }}" value="one-time" data-selling-plan-input {% unless current_variant.selected_selling_plan_allocation %}checked{% endunless %}>
+            <span>
+              <strong>One-time purchase</strong><br>
+              <span style="color: rgb(var(--color-text-muted)); font-size:0.88rem;" data-onetime-price>{{ current_variant.price | money }}</span>
+            </span>
+          </label>
+        {%- endunless -%}
+        {%- for group in selling_plan_groups -%}
+          {%- for plan in group.selling_plans -%}
+            <label class="selling-plan-option">
+              <input type="radio" name="selling_plan_radio_{{ buy_box_product.id }}" value="{{ plan.id }}" data-selling-plan-input {% if forloop.first %}checked{% endif %}>
+              <span>
+                <strong>{{ plan.name }}</strong>
+                {%- if plan.description != blank %}<span class="selling-plan-option__save">{{ plan.description }}</span>{% endif -%}
+                <br>
+                <span style="color: rgb(var(--color-text-muted)); font-size:0.88rem;">
+                  {%- for allocation in current_variant.selling_plan_allocations -%}
+                    {%- if allocation.selling_plan.id == plan.id -%}
+                      {{ allocation.per_delivery_price | money }} per delivery
+                    {%- endif -%}
+                  {%- endfor -%}
+                </span>
+              </span>
+            </label>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+      <input type="hidden" name="selling_plan" value="{{ selling_plan_groups[0].selling_plans[0].id }}">
+    {%- endif -%}
+
+    <div class="field" style="display:flex; align-items:center; gap:1rem;">
+      <label class="visually-hidden" for="quantity-{{ buy_box_product.id }}">Quantity</label>
+      <div class="quantity-selector">
+        <button type="button" data-quantity-step="-1" aria-label="Decrease quantity">&minus;</button>
+        <input type="number" id="quantity-{{ buy_box_product.id }}" name="quantity" value="1" min="1" inputmode="numeric">
+        <button type="button" data-quantity-step="1" aria-label="Increase quantity">+</button>
+      </div>
+      <button type="submit" class="btn btn--primary" style="flex:1;" data-submit-button data-label-cart="Add to bag" data-label-subscribe="Subscribe now" data-label-soldout="Sold out" {% unless current_variant.available %}disabled{% endunless %}>
+        <span data-submit-button-text>
+          {%- if current_variant.available == false -%}
+            Sold out
+          {%- elsif selling_plan_groups.size > 0 -%}
+            Subscribe now
+          {%- else -%}
+            Add to bag
+          {%- endif -%}
+        </span>
+      </button>
+    </div>
+  {%- endform -%}
+</product-form>

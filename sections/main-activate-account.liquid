@@ -1,0 +1,29 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight">
+  <div class="page-width" style="max-width:26rem;">
+    <h1 class="text-center">Activate your account</h1>
+    {%- form 'activate_customer_password' -%}
+      {%- if form.errors -%}
+        <div class="form-status">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <div class="field">
+        <label for="ActivatePassword">Password</label>
+        <input type="password" id="ActivatePassword" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <div class="field">
+        <label for="ActivatePasswordConfirm">Confirm password</label>
+        <input type="password" id="ActivatePasswordConfirm" name="customer[password_confirmation]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" name="customer[activate]" class="btn btn--primary btn--block">Activate account</button>
+      <button type="submit" name="customer[decline]" class="btn btn--outline btn--block" style="margin-top:0.75rem;">Decline invitation</button>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Activate account",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

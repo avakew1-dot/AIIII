@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- if settings.favicon -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {{ content_for_header }}
+
+  {%- style -%}
+    {% render 'color-schemes' %}
+    :root {
+      --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+      --font-heading-weight: {{ settings.font_heading.weight }};
+      --font-heading-style: {{ settings.font_heading.style }};
+      --font-script: {{ settings.font_script.family }}, {{ settings.font_script.fallback_families }};
+      --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+      --page-width: {{ settings.page_width }}px;
+      --button-radius: {{ settings.button_radius }}px;
+      --logo-width: {{ settings.logo_width }}px;
+      --section-spacing: {{ settings.spacing_sections }}px;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-weight: {{ settings.font_heading.weight }};
+      font-style: {{ settings.font_heading.style }};
+    }
+    .shopify-section + .shopify-section {
+      margin-top: var(--section-spacing);
+    }
+  {%- endstyle -%}
+
+  {{ settings.font_heading | font_face: font_display: 'swap' }}
+  {{ settings.font_script | font_face: font_display: 'swap' }}
+  {{ settings.font_body | font_face: font_display: 'swap' }}
+
+  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+  <script>window.themeMoneyFormat = {{ shop.money_format | json }};</script>
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+</head>
+
+<body data-cart-type="{{ settings.cart_type }}" class="template-{{ request.page_type }}">
+  <a class="skip-to-content-link visually-hidden" href="#main-content">Skip to content</a>
+
+  {% sections 'header-group' %}
+
+  <main id="main-content">
+    {{ content_for_layout }}
+  </main>
+
+  {% sections 'footer-group' %}
+
+  {%- if settings.cart_type == 'drawer' -%}
+    {% section 'cart-drawer' %}
+  {%- endif -%}
+</body>
+</html>

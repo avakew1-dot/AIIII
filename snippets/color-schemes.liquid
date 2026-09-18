@@ -1,0 +1,24 @@
+{%- comment -%}
+  Renders one CSS custom-property block per colour scheme defined in
+  settings_schema.json > color_schemes. Each section picks a scheme id
+  and gets `class="color-{{ scheme_id }}"` applied to its wrapper.
+  RGB triplets (not hex) so components can build rgba() for overlays.
+{%- endcomment -%}
+{%- for scheme in settings.color_schemes -%}
+  {%- assign bg = scheme.settings.background -%}
+  {%- assign bg_alt = scheme.settings.background_alt -%}
+  {%- assign text = scheme.settings.text -%}
+  {%- assign text_muted = scheme.settings.text_muted -%}
+  {%- assign accent = scheme.settings.accent -%}
+  {%- assign accent_text = scheme.settings.accent_text -%}
+  {%- assign border = scheme.settings.border -%}
+  .color-{{ scheme.id }} {
+    --color-background: {{ bg | color_extract: 'red' }}, {{ bg | color_extract: 'green' }}, {{ bg | color_extract: 'blue' }};
+    --color-background-alt: {{ bg_alt | color_extract: 'red' }}, {{ bg_alt | color_extract: 'green' }}, {{ bg_alt | color_extract: 'blue' }};
+    --color-text: {{ text | color_extract: 'red' }}, {{ text | color_extract: 'green' }}, {{ text | color_extract: 'blue' }};
+    --color-text-muted: {{ text_muted | color_extract: 'red' }}, {{ text_muted | color_extract: 'green' }}, {{ text_muted | color_extract: 'blue' }};
+    --color-accent: {{ accent | color_extract: 'red' }}, {{ accent | color_extract: 'green' }}, {{ accent | color_extract: 'blue' }};
+    --color-accent-text: {{ accent_text | color_extract: 'red' }}, {{ accent_text | color_extract: 'green' }}, {{ accent_text | color_extract: 'blue' }};
+    --color-border: {{ border | color_extract: 'red' }}, {{ border | color_extract: 'green' }}, {{ border | color_extract: 'blue' }};
+  }
+{%- endfor -%}

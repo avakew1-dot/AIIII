@@ -1,0 +1,62 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight">
+  <div class="page-width">
+    {%- paginate collection.products by section.settings.products_per_page -%}
+      {%- if collection.products.size == 0 -%}
+        <p class="text-center" style="padding-block:3rem; color: rgb(var(--color-text-muted));">No pieces here yet &mdash; check back soon.</p>
+      {%- else -%}
+        <div class="grid grid--{{ section.settings.columns }}">
+          {%- for product in collection.products -%}
+            {% render 'card-product', card_product: product %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if paginate.pages > 1 -%}
+        <nav aria-label="Pagination" style="display:flex; justify-content:center; gap:0.75rem; margin-top:3rem;">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="btn btn--outline btn--sm">Previous</a>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}
+              <a href="{{ part.url }}" class="btn btn--outline btn--sm">{{ part.title }}</a>
+            {%- else -%}
+              <span class="btn btn--sm" style="border:1.5px solid transparent;">{{ part.title }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="btn btn--outline btn--sm">Next</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product grid",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "default": "4",
+      "options": [
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "default": 16
+    }
+  ]
+}
+{% endschema %}

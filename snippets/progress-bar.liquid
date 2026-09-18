@@ -1,0 +1,25 @@
+{%- comment -%}
+  Charity-style "funds raised" progress bar.
+  Accepts: raised (number), goal (number), label (string, optional)
+{%- endcomment -%}
+{%- liquid
+  assign percent = 0
+  if goal and goal > 0
+    assign percent = raised | times: 100.0 | divided_by: goal
+  endif
+  if percent > 100
+    assign percent = 100
+  endif
+-%}
+<div class="progress-bar">
+  {%- if label -%}
+    <p class="progress-bar__label">{{ label }}</p>
+  {%- endif -%}
+  <div class="progress-bar__track" role="progressbar" aria-valuenow="{{ percent | round }}" aria-valuemin="0" aria-valuemax="100">
+    <span class="progress-bar__fill" style="width: {{ percent }}%;"></span>
+  </div>
+  <div class="progress-bar__figures">
+    <span class="progress-bar__raised">£{{ raised | round: 0 }} raised</span>
+    <span class="progress-bar__goal">of £{{ goal | round: 0 }} goal</span>
+  </div>
+</div>

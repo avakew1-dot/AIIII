@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "Say hello",
+        "heading": "Get in touch",
+        "text": "Questions about your subscription, a missing sticker sheet, or just want to say hi — we read every message.",
+        "button_label": "Send message"
+      }
+    }
+  },
+  "order": ["form"]
+}

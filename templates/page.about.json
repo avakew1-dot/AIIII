@@ -1,0 +1,57 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "eyebrow-1": { "type": "eyebrow", "settings": { "text": "About Dear Wild" } },
+        "script-1": { "type": "script", "settings": { "text": "with love, from a kitchen table" } },
+        "heading-1": { "type": "heading", "settings": { "text": "A small ritual, mailed monthly" } },
+        "text-1": { "type": "text", "settings": { "text": "<p>Dear Wild is a subscription for people who like their pages blank and their mail worth opening. Once a month, we illustrate an animal, print it as a cover for a brand-new journal, cut a matching sticker sheet, and choose a charity working to look after that animal in the wild.</p><p>There's no studio tour here, no faces behind the brand — just careful, hand-drawn work and a genuine soft spot for creatures that need a bit of help.</p>" } }
+      },
+      "block_order": ["eyebrow-1", "script-1", "heading-1", "text-1"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "paper_texture": true,
+        "alignment": "left"
+      }
+    },
+    "divider": {
+      "type": "rich-text",
+      "blocks": {
+        "divider-1": { "type": "divider" }
+      },
+      "block_order": ["divider-1"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "paper_texture": false,
+        "alignment": "center"
+      }
+    },
+    "values": {
+      "type": "rich-text",
+      "blocks": {
+        "heading-2": { "type": "heading", "settings": { "text": "What we believe" } },
+        "text-2": { "type": "text", "settings": { "text": "<p><strong>Slow and handmade.</strong> Every cover starts as a drawing, not a stock photo. <strong>Give as you go.</strong> A portion of every order goes to that month's charity, tracked in the open on our Impact page. <strong>Blank pages, no pressure.</strong> Journals with no prompts, no rules — just room to think.</p>" } }
+      },
+      "block_order": ["heading-2", "text-2"],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "paper_texture": true,
+        "alignment": "left"
+      }
+    },
+    "cta": {
+      "type": "gingham-callout",
+      "settings": {
+        "gingham_scheme": "scheme-3",
+        "color_scheme": "scheme-2",
+        "eyebrow": "Come along",
+        "heading": "Join this month's mailing",
+        "text": "<p>See what's inside, meet this month's animal, and start your subscription.</p>",
+        "button_label": "View the subscription",
+        "button_url": "/pages/subscription"
+      }
+    }
+  },
+  "order": ["intro", "divider", "values", "cta"]
+}

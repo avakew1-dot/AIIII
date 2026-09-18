@@ -1,0 +1,17 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding text-center">
+  <div class="page-width">
+    <span class="eyebrow" style="justify-content:center; width:100%;">{% render 'icon-doodle-bird' %} Lost in the post</span>
+    <h1>This page wandered off</h1>
+    <p class="lede" style="margin-inline:auto;">We couldn't find what you were looking for. Perhaps it's still in transit.</p>
+    <a href="{{ routes.root_url }}" class="btn btn--primary">Back home</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "404 page",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

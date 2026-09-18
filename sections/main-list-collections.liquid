@@ -1,0 +1,26 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight">
+  <div class="page-width">
+    <h1 class="text-center">Collections</h1>
+    <div class="grid grid--3" style="margin-top:2rem;">
+      {%- for collection in collections -%}
+        <a href="{{ collection.url }}" class="postcard-card">
+          <div class="postcard-card__media deckle-edge">
+            {%- if collection.featured_image -%}
+              {{ collection.featured_image | image_url: width: 700 | image_tag: alt: collection.title }}
+            {%- endif -%}
+          </div>
+          <p class="postcard-card__title">{{ collection.title }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "List of collections",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

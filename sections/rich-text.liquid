@@ -1,0 +1,113 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding {% if section.settings.paper_texture %}grain-texture{% endif %}">
+  <div class="page-width">
+    <div class="prose {% if section.settings.alignment == 'center' %}text-center{% endif %}" style="{% if section.settings.alignment == 'center' %}margin-inline:auto;{% endif %}">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'eyebrow' -%}
+            <span class="eyebrow" {{ block.shopify_attributes }}>{% render 'icon-doodle-bird' %} {{ block.settings.text }}</span>
+          {%- when 'script' -%}
+            <p class="script-accent" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+          {%- when 'heading' -%}
+            <h2 {{ block.shopify_attributes }}>{{ block.settings.text }}</h2>
+          {%- when 'text' -%}
+            <div {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+          {%- when 'divider' -%}
+            <div class="section-divider" {{ block.shopify_attributes }}>
+              <span class="section-divider__line">{% render 'icon-doodle-dash' %}</span>
+              {% render 'icon-doodle-star' %}
+              <span class="section-divider__line">{% render 'icon-doodle-dash' %}</span>
+            </div>
+          {%- when 'button' -%}
+            <div style="margin-top:1.5rem;" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.url }}" class="btn {% if block.settings.style == 'primary' %}btn--primary{% else %}btn--outline{% endif %}">{{ block.settings.label }}</a>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "paper_texture",
+      "label": "Vintage paper grain texture",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Centered" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow",
+      "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Our story" }]
+    },
+    {
+      "type": "script",
+      "name": "Script flourish",
+      "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "with love, Dear Wild" }]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [{ "type": "text", "id": "text", "label": "Heading", "default": "Why we started mailing journals" }]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [{ "type": "richtext", "id": "text", "label": "Text", "default": "<p>We believe a blank page and a little wonder about the wild world can change a month. Every journal begins its life as an illustration of an animal that needs a bit of looking after — and every subscription helps do exactly that.</p>" }]
+    },
+    {
+      "type": "divider",
+      "name": "Doodle divider"
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Read our story" },
+        { "type": "url", "id": "url", "label": "Link" },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "default": "outline",
+          "options": [
+            { "value": "primary", "label": "Solid" },
+            { "value": "outline", "label": "Outline" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text",
+      "blocks": [
+        { "type": "eyebrow" },
+        { "type": "heading" },
+        { "type": "text" }
+      ]
+    }
+  ]
+}
+{% endschema %}

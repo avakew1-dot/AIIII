@@ -1,0 +1,61 @@
+<div class="cart-drawer color-section color-{{ section.settings.color_scheme }}" data-cart-drawer>
+  <div class="cart-drawer__overlay" data-cart-close></div>
+  <div class="cart-drawer__panel" role="dialog" aria-label="Cart" aria-modal="true">
+    <div class="cart-drawer__header">
+      <h2 style="margin:0; font-size:1.3rem;">Your bag {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}</h2>
+      <button type="button" data-cart-close aria-label="Close cart" style="background:none;border:none;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="cart-drawer__items">
+      {%- if cart.item_count == 0 -%}
+        <p style="color: rgb(var(--color-text-muted)); padding-block: 2rem; text-align:center;">Your bag is empty &mdash; the animals are waiting.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary btn--block">Browse the shop</a>
+      {%- else -%}
+        {%- for item in cart.items -%}
+          <div class="cart-line">
+            <a href="{{ item.url }}">
+              <img src="{{ item.image | image_url: width: 144 }}" alt="{{ item.title | escape }}" width="72" height="72">
+            </a>
+            <div>
+              <a href="{{ item.url }}" style="font-family: var(--font-heading); font-size:1rem;">{{ item.product.title }}</a>
+              {%- if item.variant.title != 'Default Title' %}<p style="font-size:0.82rem; color: rgb(var(--color-text-muted)); margin: 0.2em 0;">{{ item.variant.title }}</p>{% endif -%}
+              {%- if item.selling_plan_allocation -%}
+                <p style="font-size:0.78rem; color: rgb(var(--color-accent));">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+              {%- endif -%}
+              <p style="font-size:0.85rem; margin-top:0.4em;">Qty {{ item.quantity }}</p>
+              <button type="button" data-cart-remove="{{ item.key }}" style="background:none;border:none;text-decoration:underline;font-size:0.8rem;padding:0;">Remove</button>
+            </div>
+            <div style="font-weight:700; font-size:0.9rem;">{{ item.final_line_price | money }}</div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="cart-drawer__footer">
+        <div class="cart-drawer__subtotal">
+          <span>Subtotal</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        <a href="{{ routes.cart_url }}" class="btn btn--outline btn--block" style="margin-bottom:0.7rem;">View bag</a>
+        <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--block">Checkout</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

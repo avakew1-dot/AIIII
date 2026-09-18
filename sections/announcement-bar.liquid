@@ -1,0 +1,46 @@
+<div class="announcement-bar color-section color-{{ section.settings.color_scheme }}" style="text-align:center; padding: 0.55em 1em; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em;">
+  {%- if section.blocks.size > 0 -%}
+    <div class="page-width" style="padding-inline:0;">
+      {%- for block in section.blocks -%}
+        <span {{ block.shopify_attributes }}>
+          {%- if block.settings.link -%}<a href="{{ block.settings.link }}">{%- endif -%}
+          {{ block.settings.text }}
+          {%- if block.settings.link -%}</a>{%- endif -%}
+        </span>
+        {%- unless forloop.last %}<span aria-hidden="true"> &nbsp;&middot;&nbsp; </span>{% endunless -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Free UK shipping on subscriptions" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [{ "type": "message" }]
+    }
+  ]
+}
+{% endschema %}

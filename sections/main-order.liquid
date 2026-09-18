@@ -1,0 +1,36 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight">
+  <div class="page-width" style="max-width:50rem;">
+    <p><a href="{{ routes.account_url }}" style="text-decoration:underline;">&larr; Back to account</a></p>
+    <h1>Order {{ order.name }}</h1>
+    <p style="color: rgb(var(--color-text-muted));">Placed on {{ order.created_at | date: '%d %B %Y' }}</p>
+
+    <table style="width:100%; border-collapse:collapse; margin-top:1.5rem;">
+      <tbody>
+        {%- for line_item in order.line_items -%}
+          <tr style="border-bottom:1px solid rgba(var(--color-border),0.25);">
+            <td style="padding:0.75em 0.5em; display:flex; gap:1rem; align-items:center;">
+              {%- if line_item.image -%}<img src="{{ line_item.image | image_url: width: 120 }}" alt="" width="60" height="60" style="object-fit:cover;">{%- endif -%}
+              {{ line_item.title }}
+            </td>
+            <td style="padding:0.75em 0.5em;">Qty {{ line_item.quantity }}</td>
+            <td style="padding:0.75em 0.5em; text-align:right;">{{ line_item.final_line_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+
+    <div style="text-align:right; margin-top:1.5rem; font-weight:700;">Total: {{ order.total_price | money }}</div>
+
+    <h2 style="margin-top:2rem;">Shipping address</h2>
+    <p>{{ order.shipping_address | format_address }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Order detail",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,76 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "The monthly ritual",
+        "heading": "A journal in the post, a story worth telling.",
+        "subheading": "Every month, a blank journal wrapped in original animal cover art, a matching sticker sheet, and a donation to the charity looking after that animal.",
+        "button_label": "Start your subscription",
+        "button_url": "/pages/subscription",
+        "button_label_2": "Shop the prints",
+        "button_url_2": "/collections/all",
+        "image_position": "right"
+      }
+    },
+    "shop-preview": {
+      "type": "image-gallery",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "title": "The Fox, March", "subtitle": "Print", "badge": "New", "link": "/collections/all" } },
+        "item-2": { "type": "item", "settings": { "title": "The Fox sticker sheet", "subtitle": "Stickers", "badge": "", "link": "/collections/all" } },
+        "item-3": { "type": "item", "settings": { "title": "The Otter, February", "subtitle": "Print", "badge": "", "link": "/collections/all" } },
+        "item-4": { "type": "item", "settings": { "title": "The Hare, January", "subtitle": "Sold out", "badge": "", "link": "/collections/all" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "In the shop",
+        "heading": "This season's prints & stickers",
+        "text": "Every illustration starts life as a cover — the extras are just as loved.",
+        "alignment": "center",
+        "columns": "4"
+      }
+    },
+    "impact-callout": {
+      "type": "gingham-callout",
+      "settings": {
+        "gingham_scheme": "scheme-3",
+        "color_scheme": "scheme-2",
+        "eyebrow": "This month's cause",
+        "heading": "Every box gives something back",
+        "text": "<p>10% of every subscription goes straight to that month's charity partner — see exactly where it lands on our Impact page.</p>",
+        "button_label": "See our impact",
+        "button_url": "/pages/impact"
+      }
+    },
+    "about-teaser": {
+      "type": "rich-text",
+      "blocks": {
+        "eyebrow-1": { "type": "eyebrow", "settings": { "text": "Our story" } },
+        "heading-1": { "type": "heading", "settings": { "text": "Made for the quiet, curious and wild at heart" } },
+        "text-1": { "type": "text", "settings": { "text": "<p>Dear Wild started as a sketchbook habit and grew into a small mail-order ritual: one animal, one story, one journal at a time. We're not a studio with a storefront — just a kitchen table, a stack of blank pages, and a soft spot for creatures who need a bit of looking after.</p>" } },
+        "button-1": { "type": "button", "settings": { "label": "Read our story", "url": "/pages/about", "style": "outline" } }
+      },
+      "block_order": ["eyebrow-1", "heading-1", "text-1", "button-1"],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "paper_texture": true,
+        "alignment": "left"
+      }
+    },
+    "subscribe-callout": {
+      "type": "gingham-callout",
+      "settings": {
+        "gingham_scheme": "scheme-5",
+        "color_scheme": "scheme-2",
+        "eyebrow": "Join the club",
+        "heading": "£23 a month. One good habit.",
+        "text": "<p>Cancel or pause any time — no questions, no guilt, just an open invitation to come back whenever the mood strikes.</p>",
+        "button_label": "Start your subscription",
+        "button_url": "/pages/subscription"
+      }
+    }
+  },
+  "order": ["hero", "shop-preview", "impact-callout", "about-teaser", "subscribe-callout"]
+}

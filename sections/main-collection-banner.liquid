@@ -1,0 +1,23 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight text-center">
+  <div class="page-width">
+    <span class="eyebrow" style="justify-content:center; width:100%;">{% render 'icon-doodle-paw' %} Shop</span>
+    <h1>{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <div class="prose lede" style="margin-inline:auto;">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

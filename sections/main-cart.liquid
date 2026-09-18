@@ -1,0 +1,56 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight">
+  <div class="page-width">
+    <h1>Your bag</h1>
+    {%- if cart.item_count == 0 -%}
+      <p style="color: rgb(var(--color-text-muted)); margin: 2rem 0;">Your bag is empty &mdash; the animals are waiting.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">Browse the shop</a>
+    {%- else -%}
+      {%- form 'cart', cart -%}
+        <div style="display:flex; flex-direction:column; gap:0;">
+          {%- for item in cart.items -%}
+            <div class="cart-line" style="grid-template-columns: 96px 1fr auto;">
+              <a href="{{ item.url }}"><img src="{{ item.image | image_url: width: 192 }}" alt="{{ item.title | escape }}" width="96" height="96"></a>
+              <div>
+                <a href="{{ item.url }}" style="font-family: var(--font-heading); font-size:1.15rem;">{{ item.product.title }}</a>
+                {%- if item.variant.title != 'Default Title' %}<p style="font-size:0.85rem; color: rgb(var(--color-text-muted));">{{ item.variant.title }}</p>{% endif -%}
+                {%- if item.selling_plan_allocation -%}
+                  <p style="font-size:0.8rem; color: rgb(var(--color-accent));">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                {%- endif -%}
+                <div class="quantity-selector" style="margin-top:0.6rem;">
+                  <button type="button" data-quantity-step="-1" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0">
+                  <button type="button" data-quantity-step="1" aria-label="Increase quantity">+</button>
+                </div>
+              </div>
+              <div style="font-weight:700;">{{ item.final_line_price | money }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div style="margin-top:2rem; max-width:24rem; margin-left:auto; text-align:right;">
+          <div class="cart-drawer__subtotal" style="font-size:1.2rem;">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p style="font-size:0.82rem; color: rgb(var(--color-text-muted)); margin-bottom:1.25rem;">Taxes and shipping calculated at checkout.</p>
+          <button type="submit" name="update" class="btn btn--outline" style="margin-bottom:0.75rem;">Update bag</button>
+          <button type="submit" name="checkout" class="btn btn--primary btn--block">Checkout</button>
+        </div>
+      {%- endform -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart page",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}
