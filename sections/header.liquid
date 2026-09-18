@@ -9,7 +9,7 @@
       {%- endif -%}
     </a>
 
-    <nav class="site-nav" aria-label="Primary">
+    <nav class="site-nav {% if section.settings.use_pill_nav %}site-nav--pill{% endif %}" aria-label="Primary">
       {%- for link in section.settings.main_menu.links -%}
         <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
       {%- endfor -%}
@@ -68,6 +68,12 @@
       "id": "main_menu",
       "label": "Menu",
       "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_pill_nav",
+      "label": "Use rounded pill-style nav links",
+      "default": false
     },
     {
       "type": "checkbox",

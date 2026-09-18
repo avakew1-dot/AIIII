@@ -1,0 +1,26 @@
+{% render 'marquee-ticker', text: section.settings.text, scheme: section.settings.color_scheme %}
+
+{% schema %}
+{
+  "name": "Ticker strip",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Free UK shipping on orders over £30  ✦  Hand-drawn, hand-packed  ✦  Cancel anytime"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ticker strip"
+    }
+  ]
+}
+{% endschema %}

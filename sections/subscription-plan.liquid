@@ -36,6 +36,23 @@
           <a href="{{ section.settings.fallback_url }}" class="btn btn--primary">{{ section.settings.fallback_label }}</a>
         {%- endif -%}
         <p style="font-size:0.8rem; color: rgb(var(--color-text-muted)); margin-top:0.5rem;">Cancel or pause anytime from your account.</p>
+
+        {%- assign has_accordion = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'accordion' -%}{%- assign has_accordion = true -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if has_accordion -%}
+          <div style="margin-top:1.75rem;">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'accordion' -%}
+                <details class="accordion-item" {{ block.shopify_attributes }}>
+                  <summary>{{ block.settings.title }}</summary>
+                  <div class="accordion-item__content">{{ block.settings.content }}</div>
+                </details>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
       </div>
 
       <div class="hero__media">
@@ -85,16 +102,27 @@
         { "type": "text", "id": "heading", "label": "Heading", "default": "One 64-page blank journal" },
         { "type": "text", "id": "text", "label": "Text", "default": "Thick, unlined paper wrapped in that month's original animal artwork." }
       ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "How it works" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Subscribe by the 20th of the month to get that month's box. Your card is charged when your box ships, not before.</p>" }
+      ]
     }
   ],
-  "max_blocks": 6,
+  "max_blocks": 10,
   "presets": [
     {
       "name": "Subscription plan",
       "blocks": [
         { "type": "feature" },
         { "type": "feature" },
-        { "type": "feature" }
+        { "type": "feature" },
+        { "type": "accordion", "settings": { "title": "How it works" } },
+        { "type": "accordion", "settings": { "title": "What you get" } },
+        { "type": "accordion", "settings": { "title": "FAQs" } }
       ]
     }
   ]

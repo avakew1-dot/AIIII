@@ -12,12 +12,33 @@
         "fallback_url": "/collections/all"
       },
       "blocks": {
-        "feature-1": { "type": "feature", "settings": { "heading": "One 64-page blank journal", "text": "Thick, unlined paper wrapped in that month's original animal artwork." } },
-        "feature-2": { "type": "feature", "settings": { "heading": "A matching sticker sheet", "text": "Hand-illustrated stickers of the same animal and its habitat." } },
-        "feature-3": { "type": "feature", "settings": { "heading": "A charity donation", "text": "10% of your subscription goes to that month's featured charity." } },
-        "feature-4": { "type": "feature", "settings": { "heading": "A short story card", "text": "A little context on the animal, the artwork, and why it matters." } }
+        "accordion-1": { "type": "accordion", "settings": { "title": "How it works", "content": "<p>Subscribe by the 20th of the month to get that month's box. Your card is charged when your box ships, not held before. Skip, pause or cancel any time from your account — no calls, no guilt.</p>" } },
+        "accordion-2": { "type": "accordion", "settings": { "title": "What you get", "content": "<p>A 64-page blank journal wrapped in that month's original animal cover art, a matching hand-illustrated sticker sheet, a short story card about the animal and its charity, and a donation of 10% of your subscription to that month's cause.</p>" } },
+        "accordion-3": { "type": "accordion", "settings": { "title": "FAQs", "content": "<p><strong>When does it ship?</strong> First week of the month. <strong>Can I gift it?</strong> Yes — choose a gift subscription at checkout. <strong>Can I skip a month?</strong> Any time, from your account.</p>" } }
       },
-      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4"]
+      "block_order": ["accordion-1", "accordion-2", "accordion-3"]
+    },
+    "ticker-1": {
+      "type": "marquee-ticker",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "text": "Old-school charm, modern goodies  ✦  Hand-designed art, hand-packed orders  ✦"
+      }
+    },
+    "collage": {
+      "type": "collage-reveal",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "label": "a blank journal, cover art included" } },
+        "item-2": { "type": "item", "settings": { "label": "a matching sticker sheet" } },
+        "item-3": { "type": "item", "settings": { "label": "a story card about this month's animal" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "In every envelope",
+        "heading": "Your month's mail includes",
+        "text": ""
+      }
     },
     "gallery": {
       "type": "image-gallery",
@@ -36,20 +57,7 @@
         "alignment": "center",
         "columns": "4"
       }
-    },
-    "faq": {
-      "type": "rich-text",
-      "blocks": {
-        "heading-1": { "type": "heading", "settings": { "text": "Good to know" } },
-        "text-1": { "type": "text", "settings": { "text": "<p><strong>When does it ship?</strong> The first week of every month. <strong>Can I skip a month?</strong> Yes, any time from your account. <strong>Can I gift it?</strong> Yes — choose a gift subscription at checkout or contact us for a printable card.</p>" } }
-      },
-      "block_order": ["heading-1", "text-1"],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "paper_texture": true,
-        "alignment": "left"
-      }
     }
   },
-  "order": ["plan", "gallery", "faq"]
+  "order": ["plan", "ticker-1", "collage", "gallery"]
 }

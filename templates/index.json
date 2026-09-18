@@ -14,6 +14,27 @@
         "image_position": "right"
       }
     },
+    "ticker-1": {
+      "type": "marquee-ticker",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "text": "Free UK shipping on subscriptions  ✦  Hand-drawn, hand-packed  ✦  10% goes to charity, every month  ✦"
+      }
+    },
+    "categories": {
+      "type": "category-row",
+      "blocks": {
+        "cat-1": { "type": "category", "settings": { "label": "Journals", "link": "/collections/all" } },
+        "cat-2": { "type": "category", "settings": { "label": "Stickers", "link": "/collections/all" } },
+        "cat-3": { "type": "category", "settings": { "label": "Prints", "link": "/collections/all" } },
+        "cat-4": { "type": "category", "settings": { "label": "Gift sets", "link": "/collections/all" } }
+      },
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Shop by kind"
+      }
+    },
     "shop-preview": {
       "type": "image-gallery",
       "blocks": {
@@ -59,6 +80,13 @@
         "alignment": "left"
       }
     },
+    "ticker-2": {
+      "type": "marquee-ticker",
+      "settings": {
+        "color_scheme": "scheme-6",
+        "text": "Slow down  ✦  Cancel your plans  ✦  This is your sign to stay in  ✦"
+      }
+    },
     "subscribe-callout": {
       "type": "gingham-callout",
       "settings": {
@@ -72,5 +100,5 @@
       }
     }
   },
-  "order": ["hero", "shop-preview", "impact-callout", "about-teaser", "subscribe-callout"]
+  "order": ["hero", "ticker-1", "categories", "shop-preview", "impact-callout", "about-teaser", "ticker-2", "subscribe-callout"]
 }

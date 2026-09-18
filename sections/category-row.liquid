@@ -1,0 +1,59 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding--tight">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="text-center" style="margin-bottom:2rem;">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    <div class="category-row">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link }}" class="category-row__item" {{ block.shopify_attributes }}>
+          <span class="category-row__icon">
+            {%- if block.settings.image -%}
+              {{ block.settings.image | image_url: width: 168 | image_tag: widths: '84,120,168', alt: block.settings.label }}
+            {%- else -%}
+              {% render 'icon-doodle-paw' %}
+            {%- endif -%}
+          </span>
+          <span class="category-row__label">{{ block.settings.label }}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Category row",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by kind" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Icon image (round crop)" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Journals" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Category row",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Journals" } },
+        { "type": "category", "settings": { "label": "Stickers" } },
+        { "type": "category", "settings": { "label": "Prints" } },
+        { "type": "category", "settings": { "label": "Gift sets" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

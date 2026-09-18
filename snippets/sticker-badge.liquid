@@ -1,0 +1,21 @@
+{%- comment -%}
+  Circular rotated "sticker" badge, meant to overlap a hero/product image corner.
+  Params: text (string, shown in script font), position (string: 'top-right' default,
+  'bottom-right', 'top-left', 'bottom-left'), size (px, default 130)
+{%- endcomment -%}
+{%- liquid
+  assign badge_size = size | default: 130
+  case position
+    when 'bottom-right'
+      assign pos_style = 'bottom: -18px; right: -18px;'
+    when 'top-left'
+      assign pos_style = 'top: -18px; left: -18px;'
+    when 'bottom-left'
+      assign pos_style = 'bottom: -18px; left: -18px;'
+    else
+      assign pos_style = 'top: -18px; right: -18px;'
+  endcase
+-%}
+<div class="sticker-badge" style="width:{{ badge_size }}px; {{ pos_style }}" aria-hidden="true">
+  <span>{{ text }}</span>
+</div>

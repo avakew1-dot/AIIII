@@ -1,0 +1,10 @@
+{%- comment -%}
+  Scrolling ticker stripe. Params: text (string), scheme (color scheme id, optional)
+{%- endcomment -%}
+<div class="marquee {% if scheme %}color-{{ scheme }}{% endif %}">
+  <span class="visually-hidden">{{ text | strip_html }}</span>
+  <div class="marquee__track" aria-hidden="true">
+    <span>{{ text }}</span><span>{{ text }}</span><span>{{ text }}</span><span>{{ text }}</span>
+    <span>{{ text }}</span><span>{{ text }}</span><span>{{ text }}</span><span>{{ text }}</span>
+  </div>
+</div>

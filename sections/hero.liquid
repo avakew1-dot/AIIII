@@ -39,6 +39,9 @@
           </div>
           {% render 'stamp-frame' %}
         </div>
+        {%- if section.settings.show_sticker_badge -%}
+          {% render 'sticker-badge', text: section.settings.sticker_badge_text, position: 'top-right' %}
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -87,6 +90,18 @@
     { "type": "text", "id": "button_label_2", "label": "Secondary button label", "default": "Shop the prints" },
     { "type": "url", "id": "button_url_2", "label": "Secondary button link" },
     { "type": "image_picker", "id": "image", "label": "This month's cover art" },
+    {
+      "type": "checkbox",
+      "id": "show_sticker_badge",
+      "label": "Show circular sticker badge on image",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "sticker_badge_text",
+      "label": "Sticker badge text",
+      "default": "Dear Wild"
+    },
     {
       "type": "select",
       "id": "image_position",
