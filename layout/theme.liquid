@@ -45,10 +45,10 @@
     }
   {%- endstyle -%}
 
-  {{ settings.font_heading | font_face: font_display: 'swap' }}
-  {{ settings.font_script | font_face: font_display: 'swap' }}
-  {{ settings.font_body | font_face: font_display: 'swap' }}
-  {{ settings.font_bubble | font_face: font_display: 'swap' }}
+  {%- if settings.font_heading.family -%}{{ settings.font_heading | font_face: font_display: 'swap' }}{%- endif -%}
+  {%- if settings.font_script.family -%}{{ settings.font_script | font_face: font_display: 'swap' }}{%- endif -%}
+  {%- if settings.font_body.family -%}{{ settings.font_body | font_face: font_display: 'swap' }}{%- endif -%}
+  {%- if settings.font_bubble.family -%}{{ settings.font_bubble | font_face: font_display: 'swap' }}{%- endif -%}
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
   <script>window.themeMoneyFormat = {{ shop.money_format | json }};</script>

@@ -2,7 +2,7 @@
   "current": {
     "font_heading": "fraunces_n4",
     "font_script": "caveat_n4",
-    "font_body": "jost_n4",
+    "font_body": "assistant_n4",
     "font_bubble": "bagel_fat_one_n4",
     "logo_width": 140,
     "frame_style": "scrollwork",
@@ -78,12 +78,7 @@
         }
       }
     },
-    "sections": {
-      "main-password-header": {
-        "type": "main-password-header",
-        "settings": {}
-      }
-    },
+    "sections": {},
     "content_for_index": []
   },
   "presets": {}
