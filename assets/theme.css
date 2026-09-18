@@ -446,7 +446,8 @@ p { margin: 0 0 1em; }
   position: relative;
   min-height: 70vh;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
 }
 .impact-spotlight__bg { position: absolute; inset: 0; }
@@ -592,6 +593,120 @@ p { margin: 0 0 1em; }
 .cart-line img { width: 72px; height: 72px; object-fit: cover; border: 1px solid rgb(var(--color-border)); }
 .cart-drawer__footer { padding: 1.25rem; border-top: 1px solid rgb(var(--color-border)); }
 .cart-drawer__subtotal { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 1rem; }
+
+/* ---------- Bubble / poster lettering ---------- */
+.font-bubble {
+  font-family: var(--font-bubble);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
+.bubble-headline {
+  position: relative;
+  display: inline-block;
+}
+.bubble-headline__note {
+  position: absolute;
+  top: -1.6em;
+  left: 2%;
+  font-family: var(--font-script);
+  font-size: 1.05rem;
+  color: rgb(var(--color-text));
+  transform: rotate(-3deg);
+  white-space: nowrap;
+}
+
+/* ---------- Halftone / duotone image treatment ---------- */
+.halftone-image {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background: rgb(var(--color-background-alt));
+}
+.halftone-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.15);
+}
+.halftone-image::before,
+.halftone-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.halftone-image::before {
+  background: rgb(var(--color-accent));
+  mix-blend-mode: color;
+  opacity: 0.4;
+  z-index: 1;
+}
+.halftone-image::after {
+  background-image: radial-gradient(rgb(var(--color-text)) 38%, transparent 40%);
+  background-size: 7px 7px;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+/* ---------- Ring stamp (circular repeating text badge) ---------- */
+.ring-stamp {
+  color: rgb(var(--color-accent));
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+.ring-stamp text {
+  font-family: var(--font-body);
+  font-size: 6.2px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  fill: currentColor;
+}
+.ring-stamp__center {
+  fill: currentColor;
+}
+
+/* ---------- Scrapbook connector arrow ---------- */
+.scrapbook-connector {
+  color: rgb(var(--color-accent));
+  flex-shrink: 0;
+}
+
+/* ---------- Poster info bar ---------- */
+.poster-bar {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid rgb(var(--color-border));
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+.poster-bar__cell {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.65em 1em;
+  border-right: 1px solid rgb(var(--color-border));
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.poster-bar__cell:last-child { border-right: none; }
+.poster-bar--on-photo {
+  border-color: rgba(243, 228, 200, 0.5);
+  color: #F3E4C8;
+}
+.poster-bar--on-photo .poster-bar__cell { border-color: rgba(243, 228, 200, 0.5); }
+.poster-bar__cell--script {
+  font-family: var(--font-script);
+  text-transform: none;
+  font-size: 1.15rem;
+  letter-spacing: 0;
+}
 
 /* ---------- Utilities ---------- */
 .mt-0 { margin-top: 0; }

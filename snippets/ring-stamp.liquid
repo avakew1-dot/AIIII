@@ -1,0 +1,20 @@
+{%- comment -%}
+  Circular repeating-text stamp badge, e.g. "FOREVER AND EVER · FOREVER AND EVER ·"
+  Params: text (string, repeated around the ring), id_suffix (string, required if rendered
+  more than once on a page, e.g. a block.id), center_icon (optional, true renders a small dot),
+  color (optional CSS colour override, e.g. '#F3E4C8', for use outside a .color-scheme-N
+  wrapper such as a full-bleed image section where --color-accent isn't scoped)
+{%- endcomment -%}
+{%- liquid
+  assign stamp_text = text | default: 'DEAR WILD · MONTHLY RITUAL ·'
+  assign stamp_id = 'ring-stamp-path-' | append: section.id | append: id_suffix
+-%}
+<svg viewBox="0 0 100 100" class="ring-stamp" aria-hidden="true" {% if color %}style="color: {{ color }};"{% endif %}>
+  <path id="{{ stamp_id }}" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"></path>
+  <text>
+    <textPath href="#{{ stamp_id }}" startOffset="0%">{{ stamp_text }} {{ stamp_text }} {{ stamp_text }}</textPath>
+  </text>
+  {%- if center_icon -%}
+    <circle class="ring-stamp__center" cx="50" cy="50" r="2.4"></circle>
+  {%- endif -%}
+</svg>

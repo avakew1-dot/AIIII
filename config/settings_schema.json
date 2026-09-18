@@ -198,6 +198,20 @@
         "id": "font_body",
         "label": "Body font",
         "default": "jost_n4"
+      },
+      {
+        "type": "header",
+        "content": "Bubble / poster-lettering accent font"
+      },
+      {
+        "type": "paragraph",
+        "content": "A bold, rounded hand-marker font for scrapbook-style callouts — used sparingly, like a sticker on a mailed envelope. Not for body copy."
+      },
+      {
+        "type": "font_picker",
+        "id": "font_bubble",
+        "label": "Bubble lettering font",
+        "default": "bagel_fat_one_n4"
       }
     ]
   },

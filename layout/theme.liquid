@@ -30,6 +30,7 @@
       --font-heading-style: {{ settings.font_heading.style }};
       --font-script: {{ settings.font_script.family }}, {{ settings.font_script.fallback_families }};
       --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+      --font-bubble: {{ settings.font_bubble.family }}, {{ settings.font_bubble.fallback_families }};
       --page-width: {{ settings.page_width }}px;
       --button-radius: {{ settings.button_radius }}px;
       --logo-width: {{ settings.logo_width }}px;
@@ -47,6 +48,7 @@
   {{ settings.font_heading | font_face: font_display: 'swap' }}
   {{ settings.font_script | font_face: font_display: 'swap' }}
   {{ settings.font_body | font_face: font_display: 'swap' }}
+  {{ settings.font_bubble | font_face: font_display: 'swap' }}
 
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
   <script>window.themeMoneyFormat = {{ shop.money_format | json }};</script>

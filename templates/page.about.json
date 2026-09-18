@@ -27,6 +27,20 @@
         "alignment": "center"
       }
     },
+    "scrapbook": {
+      "type": "scrapbook-moment",
+      "blocks": {
+        "photo-1": { "type": "photo", "settings": { "label": "Cover no. 1", "halftone": true } },
+        "photo-2": { "type": "photo", "settings": { "label": "Cover no. 40", "halftone": true } }
+      },
+      "block_order": ["photo-1", "photo-2"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "How it started",
+        "heading": "The first cover, and the fortieth",
+        "caption": "<p>Same kitchen table, same soft pencil, a few dozen animals later. The process hasn't changed much — we just got a little braver with colour.</p>"
+      }
+    },
     "values": {
       "type": "rich-text",
       "blocks": {
@@ -53,5 +67,5 @@
       }
     }
   },
-  "order": ["intro", "divider", "values", "cta"]
+  "order": ["intro", "divider", "scrapbook", "values", "cta"]
 }

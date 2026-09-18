@@ -45,7 +45,16 @@
 {%- assign spotlight_index = 0 -%}
 {%- for block in section.blocks -%}
   {%- if block.type == 'month' -%}
-    {%- assign spotlight_index = spotlight_index | plus: 1 -%}
+    {%- liquid
+      assign spotlight_index = spotlight_index | plus: 1
+      if spotlight_index < 10
+        assign spotlight_number = '00' | append: spotlight_index
+      elsif spotlight_index < 100
+        assign spotlight_number = '0' | append: spotlight_index
+      else
+        assign spotlight_number = spotlight_index
+      endif
+    -%}
     <div class="impact-spotlight" {{ block.shopify_attributes }}>
       <div class="impact-spotlight__bg">
         {%- if block.settings.spotlight_image -%}
@@ -54,19 +63,28 @@
           {{ block.settings.thumb_image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '750,1100,1500,1800', sizes: '100vw', alt: block.settings.animal_name }}
         {%- endif -%}
       </div>
+
+      <div class="poster-bar poster-bar--on-photo" style="position:relative; z-index:1;">
+        <span class="poster-bar__cell">No. {{ spotlight_number }}</span>
+        <span class="poster-bar__cell poster-bar__cell--script">{{ block.settings.month_label }}</span>
+        <span class="poster-bar__cell">{{ block.settings.charity_name | default: "Impact" }}</span>
+      </div>
+
       <div class="page-width">
-        <div class="impact-spotlight__content">
-          <span class="eyebrow" style="color:#F3E4C8;">{{ block.settings.month_label }}</span>
-          <h2 style="color:#F3E4C8;">{{ block.settings.animal_name }}</h2>
-          {%- if block.settings.charity_name != blank -%}
-            <p class="script-accent" style="color:#F3E4C8;">supporting {{ block.settings.charity_name }}</p>
-          {%- endif -%}
-          {%- if block.settings.blurb != blank -%}
-            <div style="color:#EAD9BE; max-width:42ch;">{{ block.settings.blurb }}</div>
-          {%- endif -%}
-          {%- if block.settings.charity_url != blank -%}
-            <a href="{{ block.settings.charity_url }}" class="btn btn--outline" style="margin-top:1rem;" target="_blank" rel="noopener">Visit {{ block.settings.charity_name | default: 'the charity' }}</a>
-          {%- endif -%}
+        <div class="impact-spotlight__content" style="display:flex; align-items:flex-end; gap:1.5rem; flex-wrap:wrap;">
+          <div style="flex:1; min-width:220px;">
+            <h2 style="color:#F3E4C8;">{{ block.settings.animal_name }}</h2>
+            {%- if block.settings.charity_name != blank -%}
+              <p class="script-accent" style="color:#F3E4C8;">supporting {{ block.settings.charity_name }}</p>
+            {%- endif -%}
+            {%- if block.settings.blurb != blank -%}
+              <div style="color:#EAD9BE; max-width:42ch;">{{ block.settings.blurb }}</div>
+            {%- endif -%}
+            {%- if block.settings.charity_url != blank -%}
+              <a href="{{ block.settings.charity_url }}" class="btn btn--outline" style="margin-top:1rem;" target="_blank" rel="noopener">Visit {{ block.settings.charity_name | default: 'the charity' }}</a>
+            {%- endif -%}
+          </div>
+          {% render 'ring-stamp', text: 'DEAR WILD · ' | append: block.settings.animal_name | append: ' ·', id_suffix: block.id, color: '#F3E4C8' %}
         </div>
       </div>
     </div>
