@@ -1,14 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "intro": {
       "type": "rich-text",
       "blocks": {
-        "eyebrow-1": { "type": "eyebrow", "settings": { "text": "About Dear Wild" } },
-        "script-1": { "type": "script", "settings": { "text": "with love, from a kitchen table" } },
-        "heading-1": { "type": "heading", "settings": { "text": "A small ritual, mailed monthly" } },
-        "text-1": { "type": "text", "settings": { "text": "<p>Dear Wild is a subscription for people who like their pages blank and their mail worth opening. Once a month, we illustrate an animal, print it as a cover for a brand-new journal, cut a matching sticker sheet, and choose a charity working to look after that animal in the wild.</p><p>There's no studio tour here, no faces behind the brand — just careful, hand-drawn work and a genuine soft spot for creatures that need a bit of help.</p>" } }
+        "eyebrow-1": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "About Dear Wild"
+          }
+        },
+        "script-1": {
+          "type": "script",
+          "settings": {
+            "text": "with love, from a kitchen table"
+          }
+        },
+        "heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "A small ritual, mailed monthly"
+          }
+        },
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Dear Wild is a subscription for people who like their pages blank and their mail worth opening. Once a month, we illustrate an animal, print it as a cover for a brand-new journal, cut a matching sticker sheet, and choose a charity working to look after that animal in the wild.</p><p>There's no studio tour here, no faces behind the brand — just careful, hand-drawn work and a genuine soft spot for creatures that need a bit of help.</p>"
+          }
+        }
       },
-      "block_order": ["eyebrow-1", "script-1", "heading-1", "text-1"],
+      "block_order": [
+        "eyebrow-1",
+        "script-1",
+        "heading-1",
+        "text-1"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "paper_texture": true,
@@ -18,9 +52,14 @@
     "divider": {
       "type": "rich-text",
       "blocks": {
-        "divider-1": { "type": "divider" }
+        "divider-1": {
+          "type": "divider",
+          "settings": {}
+        }
       },
-      "block_order": ["divider-1"],
+      "block_order": [
+        "divider-1"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "paper_texture": false,
@@ -30,10 +69,25 @@
     "scrapbook": {
       "type": "scrapbook-moment",
       "blocks": {
-        "photo-1": { "type": "photo", "settings": { "label": "Cover no. 1", "halftone": true } },
-        "photo-2": { "type": "photo", "settings": { "label": "Cover no. 40", "halftone": true } }
+        "photo-1": {
+          "type": "photo",
+          "settings": {
+            "label": "Cover no. 1",
+            "halftone": true
+          }
+        },
+        "photo-2": {
+          "type": "photo",
+          "settings": {
+            "label": "Cover no. 40",
+            "halftone": true
+          }
+        }
       },
-      "block_order": ["photo-1", "photo-2"],
+      "block_order": [
+        "photo-1",
+        "photo-2"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "eyebrow": "How it started",
@@ -44,10 +98,23 @@
     "values": {
       "type": "rich-text",
       "blocks": {
-        "heading-2": { "type": "heading", "settings": { "text": "What we believe" } },
-        "text-2": { "type": "text", "settings": { "text": "<p><strong>Slow and handmade.</strong> Every cover starts as a drawing, not a stock photo. <strong>Give as you go.</strong> A portion of every order goes to that month's charity, tracked in the open on our Impact page. <strong>Blank pages, no pressure.</strong> Journals with no prompts, no rules — just room to think.</p>" } }
+        "heading-2": {
+          "type": "heading",
+          "settings": {
+            "text": "What we believe"
+          }
+        },
+        "text-2": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Slow and handmade.</strong> Every cover starts as a drawing, not a stock photo. <strong>Give as you go.</strong> A portion of every order goes to that month's charity, tracked in the open on our Impact page. <strong>Blank pages, no pressure.</strong> Journals with no prompts, no rules — just room to think.</p>"
+          }
+        }
       },
-      "block_order": ["heading-2", "text-2"],
+      "block_order": [
+        "heading-2",
+        "text-2"
+      ],
       "settings": {
         "color_scheme": "scheme-4",
         "paper_texture": true,
@@ -56,16 +123,35 @@
     },
     "process": {
       "type": "process-steps",
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "caption": "<p>I paint, package and prepare your order &lt;3</p>"
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "caption": "<p>Your subscription is popped in the post</p>"
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "caption": "<p>10% of every sale goes towards saving animals in need, donated directly to charity</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "heading": "How does it actually make a difference?"
-      },
-      "blocks": {
-        "step-1": { "type": "step", "settings": { "caption": "<p>I paint, package and prepare your order &lt;3</p>" } },
-        "step-2": { "type": "step", "settings": { "caption": "<p>Your subscription is popped in the post</p>" } },
-        "step-3": { "type": "step", "settings": { "caption": "<p>10% of every sale goes towards saving animals in need, donated directly to charity</p>" } }
-      },
-      "block_order": ["step-1", "step-2", "step-3"]
+      }
     },
     "scallop": {
       "type": "scallop-divider-section",
@@ -99,5 +185,14 @@
       }
     }
   },
-  "order": ["intro", "divider", "scrapbook", "values", "process", "scallop", "stats", "cta"]
+  "order": [
+    "intro",
+    "divider",
+    "scrapbook",
+    "values",
+    "process",
+    "scallop",
+    "stats",
+    "cta"
+  ]
 }
