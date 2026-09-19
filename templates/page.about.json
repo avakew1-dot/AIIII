@@ -54,6 +54,38 @@
         "alignment": "left"
       }
     },
+    "process": {
+      "type": "process-steps",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "How does it actually make a difference?"
+      },
+      "blocks": {
+        "step-1": { "type": "step", "settings": { "caption": "<p>I paint, package and prepare your order &lt;3</p>" } },
+        "step-2": { "type": "step", "settings": { "caption": "<p>Your subscription is popped in the post</p>" } },
+        "step-3": { "type": "step", "settings": { "caption": "<p>10% of every sale goes towards saving animals in need, donated directly to charity</p>" } }
+      },
+      "block_order": ["step-1", "step-2", "step-3"]
+    },
+    "scallop": {
+      "type": "scallop-divider-section",
+      "settings": {
+        "top_scheme": "scheme-1",
+        "bottom_scheme": "scheme-5"
+      }
+    },
+    "stats": {
+      "type": "stats-band",
+      "settings": {
+        "stat_1_label": "Subscribers saving the planet",
+        "stat_1_value": "0",
+        "stat_2_label": "Total donated",
+        "stat_2_value": "0",
+        "stat_3_label": "Charities helped",
+        "stat_3_value": "0",
+        "signoff": "Our impact!"
+      }
+    },
     "cta": {
       "type": "gingham-callout",
       "settings": {
@@ -67,5 +99,5 @@
       }
     }
   },
-  "order": ["intro", "divider", "scrapbook", "values", "cta"]
+  "order": ["intro", "divider", "scrapbook", "values", "process", "scallop", "stats", "cta"]
 }

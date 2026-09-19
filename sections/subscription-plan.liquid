@@ -45,7 +45,7 @@
           <div style="margin-top:1.75rem;">
             {%- for block in section.blocks -%}
               {%- if block.type == 'accordion' -%}
-                <details class="accordion-item" {{ block.shopify_attributes }}>
+                <details class="accordion-item accordion-item--scheme color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
                   <summary>{{ block.settings.title }}</summary>
                   <div class="accordion-item__content">{{ block.settings.content }}</div>
                 </details>
@@ -107,6 +107,12 @@
       "type": "accordion",
       "name": "Accordion item",
       "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Bar colour",
+          "default": "scheme-3"
+        },
         { "type": "text", "id": "title", "label": "Title", "default": "How it works" },
         { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Subscribe by the 20th of the month to get that month's box. Your card is charged when your box ships, not before.</p>" }
       ]

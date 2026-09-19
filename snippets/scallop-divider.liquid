@@ -1,0 +1,17 @@
+{%- comment -%}
+  Scalloped wave divider: renders the TOP section's background colour as
+  downward bumps sitting on top of the BOTTOM section's background colour,
+  so the join between two stacked sections reads as a wavy scalloped edge.
+  Params: top_scheme, bottom_scheme (color scheme id strings, e.g. "scheme-1")
+{%- endcomment -%}
+{%- liquid
+  assign top = settings.color_schemes | where: 'id', top_scheme | first
+  assign bottom = settings.color_schemes | where: 'id', bottom_scheme | first
+  assign top_color = top.settings.background | default: '#F3E4C8'
+  assign bottom_color = bottom.settings.background | default: '#3A2E22'
+-%}
+<div class="scallop-divider" style="background: {{ bottom_color }};" aria-hidden="true">
+  <svg viewBox="0 0 200 20" preserveAspectRatio="none" width="100%" height="34" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0 C 8 20 17 20 25 0 C 33 20 42 20 50 0 C 58 20 67 20 75 0 C 83 20 92 20 100 0 C 108 20 117 20 125 0 C 133 20 142 20 150 0 C 158 20 167 20 175 0 C 183 20 192 20 200 0 L 200 0 L 0 0 Z" fill="{{ top_color }}"></path>
+  </svg>
+</div>

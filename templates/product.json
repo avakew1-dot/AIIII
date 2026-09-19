@@ -6,7 +6,13 @@
         "color_scheme": "scheme-1",
         "show_shipping_note": true,
         "shipping_note": "Printed, packed and posted from the UK. Journals ship the first week of each month."
-      }
+      },
+      "blocks": {
+        "accordion-1": { "type": "accordion", "settings": { "color_scheme": "scheme-3", "title": "How it works", "content": "<p>Subscribe by the 20th of the month to get that month's box. Auto-renews, skip or cancel any time.</p>" } },
+        "accordion-2": { "type": "accordion", "settings": { "color_scheme": "scheme-5", "title": "What you get", "content": "<p>A postcard with original art, a love letter, and a die cut sticker — hand-designed and hand-packed every month.</p>" } },
+        "accordion-3": { "type": "accordion", "settings": { "color_scheme": "scheme-4", "title": "FAQs", "content": "<p><strong>When does it ship?</strong> First week of the month. <strong>Can I gift it?</strong> Yes — choose a gift subscription at checkout.</p>" } }
+      },
+      "block_order": ["accordion-1", "accordion-2", "accordion-3"]
     }
   },
   "order": ["main"]

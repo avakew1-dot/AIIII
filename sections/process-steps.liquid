@@ -1,0 +1,59 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="text-center script-accent" style="font-size:clamp(1.8rem,4vw,2.6rem); margin-bottom:2.5rem;">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    <div class="process-steps">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <div class="process-step" {{ block.shopify_attributes }}>
+            <div class="process-step__polaroid">
+              {%- if block.settings.image -%}
+                {{ block.settings.image | image_url: width: 520 | image_tag: widths: '260,390,520', alt: block.settings.caption }}
+              {%- else -%}
+                <div style="width:100%; aspect-ratio:1; background: rgb(var(--color-background-alt)); display:flex; align-items:center; justify-content:center;">{% render 'icon-doodle-bird' %}</div>
+              {%- endif -%}
+            </div>
+            <p class="process-step__caption">{{ block.settings.caption }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Process steps",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How does it actually make a difference?" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo (square)", "info": "Dear Wild stays faceless — use hands-only, desk, or process shots rather than a visible face." },
+        { "type": "richtext", "id": "caption", "label": "Caption", "default": "<p>I paint, package and prepare your order</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Process steps",
+      "blocks": [
+        { "type": "step", "settings": { "caption": "<p>I paint, package and prepare your order &lt;3</p>" } },
+        { "type": "step", "settings": { "caption": "<p>Your subscription is popped in the post</p>" } },
+        { "type": "step", "settings": { "caption": "<p>10% of every sale goes towards saving animals in need, donated directly to charity</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

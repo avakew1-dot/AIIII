@@ -1,0 +1,47 @@
+<div class="stats-band" style="background: rgb(var(--color-text));">
+  <div class="stats-band__bg">
+    {%- if section.settings.image -%}
+      {{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '750,1100,1500,1800', sizes: '100vw', alt: '' }}
+    {%- endif -%}
+  </div>
+  <div class="page-width stats-band__content">
+    <div class="stats-band__grid">
+      <div>
+        <p class="stats-band__label">{{ section.settings.stat_1_label }}</p>
+        <p class="stats-band__value">{{ section.settings.stat_1_value }}</p>
+      </div>
+      <div>
+        <p class="stats-band__label">{{ section.settings.stat_2_label }}</p>
+        <p class="stats-band__value">£{{ section.settings.stat_2_value }}</p>
+      </div>
+      <div>
+        <p class="stats-band__label">{{ section.settings.stat_3_label }}</p>
+        <p class="stats-band__value">{{ section.settings.stat_3_value }}</p>
+      </div>
+    </div>
+    {%- if section.settings.signoff != blank -%}
+      <p class="stats-band__signoff">{{ section.settings.signoff }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Impact stats band",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 label", "default": "Subscribers saving the planet" },
+    { "type": "text", "id": "stat_1_value", "label": "Stat 1 value", "default": "0" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 label", "default": "Total donated" },
+    { "type": "text", "id": "stat_2_value", "label": "Stat 2 value (number only, £ added automatically)", "default": "0" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 label", "default": "Charities helped" },
+    { "type": "text", "id": "stat_3_value", "label": "Stat 3 value", "default": "0" },
+    { "type": "text", "id": "signoff", "label": "Script sign-off", "default": "Our impact!" }
+  ],
+  "presets": [
+    {
+      "name": "Impact stats band"
+    }
+  ]
+}
+{% endschema %}

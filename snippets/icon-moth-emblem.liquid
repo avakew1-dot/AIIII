@@ -1,0 +1,26 @@
+{%- comment -%}
+  Folk-illustration moth emblem (crescent moon + skull + wings), used above the
+  wordmark on the header/hero. Line-art, inherits currentColor.
+{%- endcomment -%}
+<svg viewBox="0 0 140 130" width="{{ width | default: 90 }}" height="{{ width | default: 90 }}" fill="none" xmlns="http://www.w3.org/2000/svg" class="moth-emblem" aria-hidden="true">
+  <!-- crescent moon -->
+  <path d="M70 10C64 12 60 17 60 22C60 27 64 32 70 34C66 33 63 28 63 22C63 16 66 11 70 10Z" fill="currentColor"/>
+  <!-- skull -->
+  <circle cx="70" cy="30" r="8" stroke="currentColor" stroke-width="1.4"/>
+  <path d="M65 36L64 41M75 36L76 41" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  <circle cx="67" cy="29" r="1.4" fill="currentColor"/>
+  <circle cx="73" cy="29" r="1.4" fill="currentColor"/>
+  <!-- antennae -->
+  <path d="M67 23C60 18 56 20 54 16M73 23C80 18 84 20 86 16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- body -->
+  <path d="M70 40L69 90" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- upper wings -->
+  <path d="M69 45C50 30 20 32 8 50C0 62 6 78 22 80C38 82 55 68 63 52" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M71 45C90 30 120 32 132 50C140 62 134 78 118 80C102 82 85 68 77 52" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+  <!-- lower wings -->
+  <path d="M68 60C56 62 40 72 34 88C30 98 36 108 48 106C58 104 66 92 69 78" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M72 60C84 62 100 72 106 88C110 98 104 108 92 106C82 104 74 92 71 78" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+  <!-- wing detail dots -->
+  <circle cx="30" cy="55" r="2" stroke="currentColor" stroke-width="1"/>
+  <circle cx="110" cy="55" r="2" stroke="currentColor" stroke-width="1"/>
+</svg>

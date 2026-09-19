@@ -1,0 +1,26 @@
+{% render 'scallop-divider', top_scheme: section.settings.top_scheme, bottom_scheme: section.settings.bottom_scheme %}
+
+{% schema %}
+{
+  "name": "Scallop divider",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "top_scheme",
+      "label": "Scheme above (bump colour)",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "bottom_scheme",
+      "label": "Scheme below (base colour)",
+      "default": "scheme-6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scallop divider"
+    }
+  ]
+}
+{% endschema %}

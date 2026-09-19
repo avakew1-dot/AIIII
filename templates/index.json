@@ -1,38 +1,47 @@
 {
   "sections": {
     "hero": {
-      "type": "hero",
+      "type": "animal-collage-hero",
       "settings": {
         "color_scheme": "scheme-1",
-        "eyebrow": "The monthly ritual",
-        "heading": "A journal in the post, a story worth telling.",
-        "subheading": "Every month, a blank journal wrapped in original animal cover art, a matching sticker sheet, and a donation to the charity looking after that animal.",
-        "button_label": "Start your subscription",
-        "button_url": "/pages/subscription",
-        "button_label_2": "Shop the prints",
-        "button_url_2": "/collections/all",
-        "image_position": "right"
-      }
+        "show_emblem": true,
+        "heading": "Dear Wild",
+        "tagline": "Journals for you, a lifeline for them",
+        "button_label": "",
+        "button_url": ""
+      },
+      "blocks": {
+        "photo-1": { "type": "photo", "settings": { "side": "left", "width": 210, "top": 6, "left": 2, "rotate": -6, "alt": "Leopard" } },
+        "photo-2": { "type": "photo", "settings": { "side": "left", "width": 130, "top": 4, "left": 48, "rotate": 5, "alt": "Deer" } },
+        "photo-3": { "type": "photo", "settings": { "side": "left", "width": 190, "top": 55, "left": 18, "rotate": -3, "alt": "Polar bear" } },
+        "photo-4": { "type": "photo", "settings": { "side": "right", "width": 210, "top": 4, "left": 42, "rotate": 5, "alt": "Elephant" } },
+        "photo-5": { "type": "photo", "settings": { "side": "right", "width": 150, "top": 32, "left": 2, "rotate": -8, "alt": "White tiger" } },
+        "photo-6": { "type": "photo", "settings": { "side": "right", "width": 200, "top": 48, "left": 28, "rotate": 3, "alt": "Sea lion" } }
+      },
+      "block_order": ["photo-1", "photo-2", "photo-3", "photo-4", "photo-5", "photo-6"]
     },
     "ticker-1": {
       "type": "marquee-ticker",
       "settings": {
         "color_scheme": "scheme-3",
-        "text": "Free UK shipping on subscriptions  ✦  Hand-drawn, hand-packed  ✦  10% goes to charity, every month  ✦"
+        "text": "♥ Limited club spaces available now! ♥"
       }
     },
     "categories": {
-      "type": "category-row",
+      "type": "image-gallery",
       "blocks": {
-        "cat-1": { "type": "category", "settings": { "label": "Journals", "link": "/collections/all" } },
-        "cat-2": { "type": "category", "settings": { "label": "Stickers", "link": "/collections/all" } },
-        "cat-3": { "type": "category", "settings": { "label": "Prints", "link": "/collections/all" } },
-        "cat-4": { "type": "category", "settings": { "label": "Gift sets", "link": "/collections/all" } }
+        "cat-1": { "type": "item", "settings": { "title": "Mail Club", "link": "/pages/subscription", "show_starburst": true, "starburst_position": "top: -14px; left: -14px;" } },
+        "cat-2": { "type": "item", "settings": { "title": "Journal Club", "link": "/collections/all", "show_starburst": true, "starburst_position": "bottom: -14px; right: -14px;" } },
+        "cat-3": { "type": "item", "settings": { "title": "Prints and Gifts", "link": "/collections/all", "show_starburst": true, "starburst_position": "top: -14px; left: -14px;" } }
       },
-      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"],
+      "block_order": ["cat-1", "cat-2", "cat-3"],
       "settings": {
         "color_scheme": "scheme-1",
-        "heading": "Shop by kind"
+        "eyebrow": "",
+        "heading": "",
+        "alignment": "center",
+        "columns": "3",
+        "card_style": "plain"
       }
     },
     "shop-preview": {

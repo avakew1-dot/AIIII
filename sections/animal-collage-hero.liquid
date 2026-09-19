@@ -1,0 +1,107 @@
+<div class="color-section color-{{ section.settings.color_scheme }} section-padding">
+  <div class="page-width">
+    <div class="animal-collage">
+      <div class="animal-collage__side">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'photo' and block.settings.side == 'left' -%}
+            <div class="animal-collage__photo" style="width:{{ block.settings.width }}px; top:{{ block.settings.top }}%; left:{{ block.settings.left }}%; transform: rotate({{ block.settings.rotate }}deg); aspect-ratio: 1;" {{ block.shopify_attributes }}>
+              {%- if block.settings.image -%}
+                {{ block.settings.image | image_url: width: 500 | image_tag: widths: '250,350,500', alt: block.settings.alt }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="animal-collage__center">
+        {%- if section.settings.show_emblem -%}
+          <div style="margin-bottom:0.5rem;">{% render 'icon-moth-emblem', width: 84 %}</div>
+        {%- endif -%}
+        <h1 class="font-heading" style="font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: 0.02em;">{{ section.settings.heading }}</h1>
+        {%- if section.settings.tagline != blank -%}
+          <p class="site-header__tagline" style="font-size:1.4rem; margin-top:0.5rem;">{{ section.settings.tagline }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_url }}" class="btn btn--primary" style="margin-top:1.5rem;">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+
+      <div class="animal-collage__side">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'photo' and block.settings.side == 'right' -%}
+            <div class="animal-collage__photo" style="width:{{ block.settings.width }}px; top:{{ block.settings.top }}%; left:{{ block.settings.left }}%; transform: rotate({{ block.settings.rotate }}deg); aspect-ratio: 1;" {{ block.shopify_attributes }}>
+              {%- if block.settings.image -%}
+                {{ block.settings.image | image_url: width: 500 | image_tag: widths: '250,350,500', alt: block.settings.alt }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="animal-collage__mobile-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'photo' and block.settings.image -%}
+          {{ block.settings.image | image_url: width: 300 | image_tag: alt: block.settings.alt }}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Animal collage hero",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    { "type": "checkbox", "id": "show_emblem", "label": "Show moth emblem", "default": true },
+    { "type": "text", "id": "heading", "label": "Heading (wordmark)", "default": "Dear Wild" },
+    { "type": "text", "id": "tagline", "label": "Script tagline", "default": "Journals for you, a lifeline for them" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "" },
+    { "type": "url", "id": "button_url", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "alt", "label": "Alt text", "default": "" },
+        {
+          "type": "select",
+          "id": "side",
+          "label": "Side",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        { "type": "range", "id": "width", "label": "Width (px, desktop)", "min": 100, "max": 320, "step": 10, "default": 180 },
+        { "type": "range", "id": "top", "label": "Position from top (%)", "min": 0, "max": 80, "step": 2, "default": 10 },
+        { "type": "range", "id": "left", "label": "Position from left/right edge (%)", "min": 0, "max": 70, "step": 2, "default": 10 },
+        { "type": "range", "id": "rotate", "label": "Rotation (deg)", "min": -20, "max": 20, "step": 1, "default": -4 }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Animal collage hero",
+      "blocks": [
+        { "type": "photo", "settings": { "side": "left", "width": 200, "top": 8, "left": 5, "rotate": -6 } },
+        { "type": "photo", "settings": { "side": "left", "width": 130, "top": 5, "left": 45, "rotate": 5 } },
+        { "type": "photo", "settings": { "side": "left", "width": 180, "top": 55, "left": 20, "rotate": -3 } },
+        { "type": "photo", "settings": { "side": "right", "width": 200, "top": 5, "left": 45, "rotate": 5 } },
+        { "type": "photo", "settings": { "side": "right", "width": 140, "top": 35, "left": 5, "rotate": -8 } },
+        { "type": "photo", "settings": { "side": "right", "width": 190, "top": 45, "left": 30, "rotate": 3 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -44,6 +44,19 @@
           </div>
           <p style="font-size:0.85rem; color: rgb(var(--color-text-muted));">{{ section.settings.shipping_note }}</p>
         {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div style="margin-top:1.5rem;">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'accordion' -%}
+                <details class="accordion-item accordion-item--scheme color-{{ block.settings.color_scheme }}" {{ block.shopify_attributes }}>
+                  <summary>{{ block.settings.title }}</summary>
+                  <div class="accordion-item__content">{{ block.settings.content }}</div>
+                </details>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -61,6 +74,22 @@
     },
     { "type": "checkbox", "id": "show_shipping_note", "label": "Show shipping note", "default": true },
     { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Printed, packed and posted from the UK. Journals ship the first week of each month." }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Bar colour",
+          "default": "scheme-3"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "How it works" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Subscribe by the 20th of the month to get that month's box.</p>" }
+      ]
+    }
   ]
 }
 {% endschema %}

@@ -12,9 +12,9 @@
         "fallback_url": "/collections/all"
       },
       "blocks": {
-        "accordion-1": { "type": "accordion", "settings": { "title": "How it works", "content": "<p>Subscribe by the 20th of the month to get that month's box. Your card is charged when your box ships, not held before. Skip, pause or cancel any time from your account — no calls, no guilt.</p>" } },
-        "accordion-2": { "type": "accordion", "settings": { "title": "What you get", "content": "<p>A 64-page blank journal wrapped in that month's original animal cover art, a matching hand-illustrated sticker sheet, a short story card about the animal and its charity, and a donation of 10% of your subscription to that month's cause.</p>" } },
-        "accordion-3": { "type": "accordion", "settings": { "title": "FAQs", "content": "<p><strong>When does it ship?</strong> First week of the month. <strong>Can I gift it?</strong> Yes — choose a gift subscription at checkout. <strong>Can I skip a month?</strong> Any time, from your account.</p>" } }
+        "accordion-1": { "type": "accordion", "settings": { "color_scheme": "scheme-3", "title": "How it works", "content": "<p>Subscribe by the 20th of the month to get that month's box. Your card is charged when your box ships, not held before. Skip, pause or cancel any time from your account — no calls, no guilt.</p>" } },
+        "accordion-2": { "type": "accordion", "settings": { "color_scheme": "scheme-5", "title": "What you get", "content": "<p>A 64-page blank journal wrapped in that month's original animal cover art, a matching hand-illustrated sticker sheet, a short story card about the animal and its charity, and a donation of 10% of your subscription to that month's cause.</p>" } },
+        "accordion-3": { "type": "accordion", "settings": { "color_scheme": "scheme-4", "title": "FAQs", "content": "<p><strong>When does it ship?</strong> First week of the month. <strong>Can I gift it?</strong> Yes — choose a gift subscription at checkout. <strong>Can I skip a month?</strong> Any time, from your account.</p>" } }
       },
       "block_order": ["accordion-1", "accordion-2", "accordion-3"]
     },

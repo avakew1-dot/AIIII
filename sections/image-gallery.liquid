@@ -12,8 +12,8 @@
 
     <div class="grid grid--{{ section.settings.columns }}">
       {%- for block in section.blocks -%}
-        <a href="{{ block.settings.link | default: '#' }}" class="postcard-card" {{ block.shopify_attributes }}>
-          <div class="postcard-card__media deckle-edge">
+        <a href="{{ block.settings.link | default: '#' }}" class="postcard-card {% if section.settings.card_style == 'plain' %}postcard-card--plain{% endif %}" {{ block.shopify_attributes }}>
+          <div class="postcard-card__media {% if section.settings.card_style != 'plain' %}deckle-edge{% endif %}">
             {%- if block.settings.image -%}
               {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '350,500,700', alt: block.settings.image.alt | default: block.settings.title }}
             {%- else -%}
@@ -22,9 +22,12 @@
             {%- if block.settings.badge != blank -%}
               <span class="postcard-card__badge">{{ block.settings.badge }}</span>
             {%- endif -%}
+            {%- if block.settings.show_starburst -%}
+              <span class="starburst-accent" style="{{ block.settings.starburst_position }}">{% render 'icon-doodle-starburst', width: 40 %}</span>
+            {%- endif -%}
           </div>
-          {%- if block.settings.title != blank -%}<p class="postcard-card__title">{{ block.settings.title }}</p>{%- endif -%}
-          {%- if block.settings.subtitle != blank -%}<p class="postcard-card__meta">{{ block.settings.subtitle }}</p>{%- endif -%}
+          {%- if block.settings.title != blank -%}<p class="postcard-card__title {% if section.settings.card_style == 'plain' %}text-center{% endif %}">{{ block.settings.title }}</p>{%- endif -%}
+          {%- if block.settings.subtitle != blank -%}<p class="postcard-card__meta {% if section.settings.card_style == 'plain' %}text-center{% endif %}">{{ block.settings.subtitle }}</p>{%- endif -%}
         </a>
       {%- endfor -%}
     </div>
@@ -64,6 +67,16 @@
         { "value": "3", "label": "3" },
         { "value": "4", "label": "4" }
       ]
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "label": "Card style",
+      "default": "postcard",
+      "options": [
+        { "value": "postcard", "label": "Postcard (bordered, deckle edge)" },
+        { "value": "plain", "label": "Plain (borderless, centered label)" }
+      ]
     }
   ],
   "blocks": [
@@ -75,7 +88,19 @@
         { "type": "text", "id": "title", "label": "Title", "default": "The Fox, March" },
         { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Sold out" },
         { "type": "text", "id": "badge", "label": "Badge text", "default": "" },
-        { "type": "url", "id": "link", "label": "Link" }
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "show_starburst", "label": "Show starburst accent", "default": false },
+        {
+          "type": "select",
+          "id": "starburst_position",
+          "label": "Starburst position",
+          "default": "top: -14px; left: -14px;",
+          "options": [
+            { "value": "top: -14px; left: -14px;", "label": "Top left" },
+            { "value": "top: -14px; right: -14px;", "label": "Top right" },
+            { "value": "bottom: -14px; right: -14px;", "label": "Bottom right" }
+          ]
+        }
       ]
     }
   ],
